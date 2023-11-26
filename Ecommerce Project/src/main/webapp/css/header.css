@@ -1,0 +1,45 @@
+        body {
+        	font-family: Arial, sans-serif;
+        	margin: 0;
+        	padding: 0;
+        	background-color: white;
+        }
+
+        header {
+        	background-color: SlateBlue;
+        	color: white;
+        	padding: 15px;
+        	display: flex;
+        	justify-content: space-between;
+        	align-items: center;
+        }
+
+        .site-title {
+        	font-size: 24px;
+        	font-weight: bold;
+        }
+
+        .search-bar {
+        	flex: 1;
+        	margin: 0 20px;
+        }
+
+        .search-bar input {
+        	width: 80%;
+        	padding: 8px;
+        	box-sizing: border-box;
+        	border: 1px solid #ccc;
+        	border-radius: 20px;
+        	outline: none;
+        }
+
+        .user-actions {
+        	display: flex;
+        	align-items: center;
+        }
+
+        .user-actions a {
+        	color: white;
+        	text-decoration: none;
+        	margin-left: 20px;
+        }
