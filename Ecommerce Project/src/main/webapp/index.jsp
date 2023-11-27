@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Display Items--Jon</title>
+  <title>Display Items--Jon Doe</title>
 </head>
 <body>
   <%@ include file="./includes/header.jsp" %>
