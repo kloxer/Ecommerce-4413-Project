@@ -6,22 +6,24 @@
         }
 
         header {
-        	background-color: SlateBlue;
+        	background-color: #007B7D;
         	color: white;
-        	padding: 15px;
+        	padding: 18px;
         	display: flex;
         	justify-content: space-between;
         	align-items: center;
         }
 
-        .site-title {
-        	font-size: 24px;
+        .site-title a {
+        	font-size: 25px;
+        	text-decoration: none;
+        	color: white;
         	font-weight: bold;
         }
 
         .search-bar {
         	flex: 1;
-        	margin: 0 20px;
+        	margin: 0 16px;
         }
 
         .search-bar input {
@@ -29,8 +31,19 @@
         	padding: 8px;
         	box-sizing: border-box;
         	border: 1px solid #ccc;
-        	border-radius: 20px;
+        	border-radius: 12px;
+        	font-size: 15px;
         	outline: none;
+        }
+
+        .search-bar button {
+        	padding: 10px 20px;
+        	border: none;
+        	border-radius: 8px;
+        	background-color: mediumslateblue;
+        	font-weight: bold;
+        	color: white;
+        	cursor: pointer;
         }
 
         .user-actions {
@@ -41,5 +54,15 @@
         .user-actions a {
         	color: white;
         	text-decoration: none;
-        	margin-left: 20px;
+        	font-weight: bold;
+        	margin-left: 22px;
+        }
+
+        .cart {
+        	font-size: 1.4em;
+        	color: royalblue;
+        	border-radius: 20px;
+        	padding: 5px;
+        	display: inline-block;
+        	margin: 0;
         }

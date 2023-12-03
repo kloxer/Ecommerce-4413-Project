@@ -36,7 +36,7 @@ public class ItemController extends HttpServlet {
     		throws ServletException, IOException {
 		List<Item> items = itemDAO.getAllItems();
 		request.setAttribute("items", items);
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
     }
     
 }
