@@ -10,14 +10,16 @@
 <body>
     <header>
         <div class="site-title">
-            Shelfless Shop
+            <a href="./" > Shelfless Shop </a>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search here">
+            <input type="text" placeholder="What are you looking for?">
+            <button type="button">Search</button>
         </div>
         <div class="user-actions">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+        	<span class ="cart"><a href="./">Cart &#x1F6D2;</a> </span>
+            <a href="./login.jsp">Login</a>
+            <a href="./register.jsp">Register</a>
         </div>
     </header>
 </body>
