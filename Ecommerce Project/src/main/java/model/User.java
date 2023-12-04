@@ -13,6 +13,10 @@ public class User implements Serializable{
     private String password;
     private boolean isAdmin;
     
+    public User() {
+    	
+    }
+    
     public int getId() {
 		return id;
 	}

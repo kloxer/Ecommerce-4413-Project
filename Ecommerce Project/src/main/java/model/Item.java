@@ -5,35 +5,73 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private int itemID;
     private String name;
+    private String description;
+    private String category;
+    private String brand;
+    private double quantity;
     private double price;
 
     public Item() {
     }
 
-    public int getId() {
-        return id;
-    }
+	public int getItemID() {
+		return itemID;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setItemID(int itemID) {
+		this.itemID = itemID;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public double getPrice() {
-        return price;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public double getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+    
+    
 
 }
