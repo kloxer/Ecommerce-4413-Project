@@ -1,11 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String itemID;
+	private int itemID;
     private String name;
     private String description;
     private String category;
@@ -16,11 +19,11 @@ public class Item implements Serializable {
     public Item() {
     }
 
-	public String getItemID() {
+	public int getItemID() {
 		return itemID;
 	}
 
-	public void setItemID(String itemID) {
+	public void setItemID(int itemID) {
 		this.itemID = itemID;
 	}
 
@@ -72,6 +75,17 @@ public class Item implements Serializable {
 		this.price = price;
 	}
     
+    public static void sortByPriceIncreasing(List<Item> items) {
+        Collections.sort(items, Comparator.comparingDouble(Item::getPrice));
+    }
+
+    public static void sortByPriceDecreasing(List<Item> items) {
+        Collections.sort(items, Comparator.comparingDouble(Item::getPrice).reversed());
+    }
+
+    public static void sortByName(List<Item> items) {
+        Collections.sort(items, Comparator.comparing(Item::getName));
+    }
     
 
 }
