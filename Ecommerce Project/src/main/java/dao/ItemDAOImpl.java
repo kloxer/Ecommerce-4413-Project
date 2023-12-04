@@ -27,6 +27,7 @@ public class ItemDAOImpl implements ItemDAO {
         return DriverManager.getConnection(url, user, password);
     }
 
+    
     public List<Item> getAllItems() {
         List<Item> items = new ArrayList<>();
         try (Connection connection = getConnection();
@@ -43,6 +44,8 @@ public class ItemDAOImpl implements ItemDAO {
         }
         return items;
     }
+    
+    
     
     
     
