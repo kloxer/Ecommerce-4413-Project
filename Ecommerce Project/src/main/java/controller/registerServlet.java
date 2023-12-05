@@ -64,7 +64,7 @@ public class registerServlet extends HttpServlet {
         	User user = userDAO.getUserByUsernamePassword(username, password);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-        	response.sendRedirect("./");
+        	response.sendRedirect("./account");
         } else {
         	response.sendRedirect("register.jsp");
         }

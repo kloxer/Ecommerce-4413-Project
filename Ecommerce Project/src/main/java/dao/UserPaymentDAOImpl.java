@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +14,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import model.UserPaymentMethod;
 
 
 public class UserPaymentDAOImpl implements UserPaymentDAO {
@@ -76,5 +79,36 @@ public class UserPaymentDAOImpl implements UserPaymentDAO {
         return true;
     }
     
+    
+    public UserPaymentMethod getCurrentUserPaymentMethod(int userId) {
+        Connection connection = null;
+        UserPaymentMethod userPaymentMethod = new UserPaymentMethod();
+
+        try {
+            connection = getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM User_Payment_Method WHERE User_id = ? LIMIT 1");
+            statement.setInt(1, userId);
+
+            ResultSet resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {
+                userPaymentMethod.setUpmID(resultSet.getInt("UPM_ID"));
+                userPaymentMethod.setUserID(resultSet.getInt("User_id"));
+                userPaymentMethod.setPaymentTypeID(String.valueOf(resultSet.getInt("Payment_type_id")));
+                userPaymentMethod.setCardProvider(resultSet.getString("CardProvider"));
+                userPaymentMethod.setAccountNumber(resultSet.getInt("Account_number"));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                userPaymentMethod.setExpiryDate(dateFormat.format(resultSet.getDate("Expiry_date")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+
+        return userPaymentMethod;
+    }
 
 }
