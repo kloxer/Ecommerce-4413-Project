@@ -18,8 +18,18 @@
         </div>
         <div class="user-actions">
         	<span class ="cart"><a href="./">Cart &#x1F6D2;</a> </span>
-            <a href="./login.jsp">Login</a>
-            <a href="./register.jsp">Register</a>
+    <% 
+        Object userObject = session.getAttribute("user");
+        if (userObject != null) {
+            // For when user is logged in
+            out.println("<a href=\"./account\">Account</a>");
+            out.println("<a href=\"./logoutServlet\">Log Out</a>");
+        } else {
+            // For when user is logged out
+            out.println("<a href=\"./login.jsp\">Login</a>");
+            out.println("<a href=\"./register.jsp\">Register</a>");
+        }
+    %>
         </div>
     </header>
 </body>

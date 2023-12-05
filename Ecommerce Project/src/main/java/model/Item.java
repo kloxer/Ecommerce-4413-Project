@@ -8,7 +8,7 @@ import java.util.List;
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int itemID;
+	private String itemID;
     private String name;
     private String description;
     private String category;
@@ -19,11 +19,11 @@ public class Item implements Serializable {
     public Item() {
     }
 
-	public int getItemID() {
+	public String getItemID() {
 		return itemID;
 	}
 
-	public void setItemID(int itemID) {
+	public void setItemID(String itemID) {
 		this.itemID = itemID;
 	}
 

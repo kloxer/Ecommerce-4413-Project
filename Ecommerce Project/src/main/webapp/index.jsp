@@ -25,6 +25,7 @@
     </style>
 </head>
 <body>
+	<%@ include file="./includes/header.jsp"%>
     <!-- Tabs Container -->
     <div class="tabs is-centered">
         <ul>

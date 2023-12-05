@@ -9,6 +9,7 @@ form h2 {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="password"] {
 	padding: 12px;
 	border-radius: 10px;

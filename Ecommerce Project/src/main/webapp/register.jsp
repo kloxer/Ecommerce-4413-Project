@@ -13,14 +13,17 @@
 </head>
 <body>
 
-	<%@ include file="./includes/header.jsp"%><br><br>
-	<form action="registerServlet" method="post" onsubmit="return validateRegister()">
+	<%@ include file="./includes/header.jsp"%><br>
+	<br>
+	<form action="registerServlet" method="post"
+		onsubmit="return validateRegister()">
 		<h2>Register</h2>
-		First name: <input type="text" name="firstname"><br> Last
-		name: <input type="text" name="lastname"><br> Username: <input
-			type="text" name="username"><br> Password: <input
-			type="password" name="password"><br> <input
-			type="submit" value="Register">
+		First name: <input type="text" name="firstname"><br> 
+		Last name: <input type="text" name="lastname"><br> 
+		Phone: <input type="number" name="phone"><br> 
+		Username: <input type="text" name="username"><br> 
+		Password: <input type="password" name="password"><br> 
+		<input type="submit" value="Register">
 	</form>
 
 </body>

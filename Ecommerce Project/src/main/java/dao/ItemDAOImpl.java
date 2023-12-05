@@ -141,6 +141,35 @@ public class ItemDAOImpl implements ItemDAO {
         return result;
     }
 
+    public List<Item> findItemsByBrand(String brand) {
+        List<Item> result = new ArrayList<>();
+
+        String sql = "SELECT * FROM Item WHERE brand = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, brand);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Item item = new Item();
+                item.setItemID(resultSet.getString("itemID"));
+                item.setName(resultSet.getString("name"));
+                item.setDescription(resultSet.getString("description"));
+                item.setCategory(resultSet.getString("category"));
+                item.setBrand(resultSet.getString("brand"));
+                item.setQuantity(resultSet.getInt("quantity"));
+                item.setPrice(resultSet.getInt("price"));
+
+                result.add(item);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    
     @Override
     public void insert(Item item) {
         Connection connection = null;

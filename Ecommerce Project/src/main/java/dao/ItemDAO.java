@@ -11,6 +11,8 @@ public interface ItemDAO {
 	List<Item> searchItemsByKeyword(String keyWord);
 
 	List<Item> findItemsByCategory(String category);
+	
+	List<Item> findItemsByBrand(String brand);
 
 	void insert(Item item);
 
