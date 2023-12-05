@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,6 +14,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.User;
+import dao.*;
 
 
 public class UserDAOImpl implements UserDAO{
@@ -38,7 +40,7 @@ public class UserDAOImpl implements UserDAO{
         }
     }
     
-    //check if user exists
+    //check if username exists
     private boolean userExists(String username) {
         String sql = "SELECT * FROM User WHERE Username = ?";
         Connection connection = null;
@@ -58,7 +60,23 @@ public class UserDAOImpl implements UserDAO{
         }
     }
     
+    // Method to generate a unique User_ID for a new user
+    private int generateUniqueUserID(Connection connection) throws SQLException {
+        int uniqueUserID = 0;
+
+        PreparedStatement statement = connection.prepareStatement("SELECT MAX(User_ID) FROM User");
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            uniqueUserID = resultSet.getInt(1);
+        }
+
+        //Just add 1 to max if exists else id = 1
+        return uniqueUserID + 1;
+    }
+    
     public boolean addUser(User user) {
+    	//Check is Username already Exists
         if (userExists(user.getUsername())) {
             //Indicate user already Exists
             return false;
@@ -67,17 +85,27 @@ public class UserDAOImpl implements UserDAO{
         Connection connection = null;
         try {
             connection = getConnection();
+            //Generate a unique User_ID for this User
+            int userId = generateUniqueUserID(connection);
+            
+            //Add default payment method entry for current User ID
+            UserPaymentDAO userDAO = new UserPaymentDAOImpl();
+            userDAO.addDefUserPaymentMethod(userId);
+            
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO User (Username, Phone_number, Password, First_name, Last_name, isAdmin) VALUES (?, ?, ?, ?, ?, ?)");
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPhoneNumber());
-            statement.setString(3, user.getPassword());
-            statement.setString(4, user.getFirstName());
-            statement.setString(5, user.getLastName());
-            statement.setBoolean(6, user.isAdmin());
+                    "INSERT INTO User (User_ID, Username, Phone_number, Password, First_name, Last_name, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                statement.setInt(1, userId);
+                statement.setString(2, user.getUsername());
+                statement.setString(3, user.getPhoneNumber());
+                statement.setString(4, user.getPassword());
+                statement.setString(5, user.getFirstName());
+                statement.setString(6, user.getLastName());
+                statement.setBoolean(7, user.isAdmin());
 
-            statement.executeUpdate();
-        } catch (SQLException ex) {
+                statement.executeUpdate();
+                
+                
+        } catch (SQLException | NamingException ex) {
             ex.printStackTrace();
         } finally {
             closeConnection(connection);
