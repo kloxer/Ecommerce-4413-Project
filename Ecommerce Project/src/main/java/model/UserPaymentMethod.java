@@ -2,68 +2,73 @@ package model;
 
 import java.io.Serializable;
 
-public class UserPaymentMethod implements Serializable{
+public class UserPaymentMethod implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int upmID;
-	private int userID;
-	private String paymentTypeID;
-	private String cardProvider;
-	private int accountNumber;
-	private String expiryDate;
-	
-	public UserPaymentMethod() {
-		
-	}
+	private int UPM_ID;
+    private int user_id;
+    private int CVV;
+    private String cardProvider;
+    private int cardNumber;
+    private int exp_year;
+    private int exp_month;
 
-	public int getUpmID() {
-		return upmID;
-	}
+    public UserPaymentMethod() {
+    }
 
-	public void setUpmID(int upmID) {
-		this.upmID = upmID;
-	}
+    public int getUPM_ID() {
+        return UPM_ID;
+    }
 
-	public int getUserID() {
-		return userID;
-	}
+    public void setUPM_ID(int UPM_ID) {
+        this.UPM_ID = UPM_ID;
+    }
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
+    public int getUser_id() {
+        return user_id;
+    }
 
-	public String getPaymentTypeID() {
-		return paymentTypeID;
-	}
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
-	public void setPaymentTypeID(String paymentTypeID) {
-		this.paymentTypeID = paymentTypeID;
-	}
+    public int getCVV() {
+        return CVV;
+    }
 
-	public String getCardProvider() {
-		return cardProvider;
-	}
+    public void setCVV(int CVV) {
+        this.CVV = CVV;
+    }
 
-	public void setCardProvider(String cardProvider) {
-		this.cardProvider = cardProvider;
-	}
+    public String getCardProvider() {
+        return cardProvider;
+    }
 
-	public int getAccountNumber() {
-		return accountNumber;
-	}
+    public void setCardProvider(String cardProvider) {
+        this.cardProvider = cardProvider;
+    }
 
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+    public int getCardNumber() {
+        return cardNumber;
+    }
 
-	public String getExpiryDate() {
-		return expiryDate;
-	}
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
 
-	public void setExpiryDate(String expiryDate) {
-		this.expiryDate = expiryDate;
-	}
+    public int getExp_year() {
+        return exp_year;
+    }
 
+    public void setExp_year(int exp_year) {
+        this.exp_year = exp_year;
+    }
 
-	
+    public int getExp_month() {
+        return exp_month;
+    }
+
+    public void setExp_month(int exp_month) {
+        this.exp_month = exp_month;
+    }
 }
