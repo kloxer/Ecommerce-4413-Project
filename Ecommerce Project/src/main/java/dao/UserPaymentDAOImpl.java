@@ -60,14 +60,16 @@ public class UserPaymentDAOImpl implements UserPaymentDAO {
         try {
             connection = getConnection();
 
+            //Insert default/empty CC values for the User
             PreparedStatement paymentStatement = connection.prepareStatement(
-                    "INSERT INTO User_Payment_Method (UPM_ID, User_id, Payment_type_id, CardProvider, Account_number, Expiry_date) VALUES (?, ?, ?, ?, ?, ?)");
-            paymentStatement.setInt(1, generateUniqueUPM_ID(connection)); 
+                    "INSERT INTO User_Payment_Method (UPM_ID, User_id, CVV, CardProvider, Card_Number, exp_year, exp_month) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            paymentStatement.setInt(1, generateUniqueUPM_ID(connection));
             paymentStatement.setInt(2, userId);
             paymentStatement.setInt(3, 0);
             paymentStatement.setString(4, "Visa");
             paymentStatement.setInt(5, 0);
-            paymentStatement.setDate(6, new Date(System.currentTimeMillis()));
+            paymentStatement.setInt(6, 0); 
+            paymentStatement.setInt(7, 0);
 
             paymentStatement.executeUpdate();
         } catch (SQLException ex) {
@@ -94,13 +96,14 @@ public class UserPaymentDAOImpl implements UserPaymentDAO {
             ResultSet resultSet = statement.executeQuery();
             
             if (resultSet.next()) {
-                userPaymentMethod.setUpmID(resultSet.getInt("UPM_ID"));
-                userPaymentMethod.setUserID(resultSet.getInt("User_id"));
-                userPaymentMethod.setPaymentTypeID(String.valueOf(resultSet.getInt("Payment_type_id")));
+            	//Make the model
+                userPaymentMethod.setUPM_ID(resultSet.getInt("UPM_ID"));
+                userPaymentMethod.setUser_id(resultSet.getInt("User_id"));
+                userPaymentMethod.setCVV(resultSet.getInt("CVV"));
                 userPaymentMethod.setCardProvider(resultSet.getString("CardProvider"));
-                userPaymentMethod.setAccountNumber(resultSet.getInt("Account_number"));
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                userPaymentMethod.setExpiryDate(dateFormat.format(resultSet.getDate("Expiry_date")));
+                userPaymentMethod.setCardNumber(resultSet.getInt("Card_Number"));
+                userPaymentMethod.setExp_year(resultSet.getInt("exp_year"));
+                userPaymentMethod.setExp_month(resultSet.getInt("exp_month"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
