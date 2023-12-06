@@ -48,6 +48,5 @@
       <li>${item.name} - $ ${item.price}</li>
     </c:forEach>
   </ul>
-  <img src="/images/iphone14.jpg" alt="My Image">
 </body>
 </html>
