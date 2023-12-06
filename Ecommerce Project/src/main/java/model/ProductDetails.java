@@ -15,7 +15,16 @@ public class ProductDetails implements Serializable{
 		
 	}
     
-    public int getId() {
+	public ProductDetails(int id, int prodID, int quantityRemaining, double price, int sku) {
+	    this.id = id;
+	    this.prodID = prodID;
+	    this.quantityRemaining = quantityRemaining;
+	    this.price = price;
+	    this.sku = sku;
+	}
+
+
+	public int getId() {
 		return id;
 	}
 	
