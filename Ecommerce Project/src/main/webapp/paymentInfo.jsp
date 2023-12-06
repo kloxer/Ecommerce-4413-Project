@@ -20,16 +20,17 @@
 	</div>
 
 	<form action="updatePaymentServlet" method="post" onsubmit="return validatePaymentUpdate()">
-		<h2>Update Payment Info Below</h2>
-		<h4>*Filling this and Address Info is mandatory before placing order.*</h4><br>
-		UPM ID: <input type="text" name="upmId" value="${userPaymentMethod.upmID}" readonly><br> 
-		User ID: <input type="text" name="userId" value="${userPaymentMethod.userID}" readonly><br>
-		Payment Type ID: <input type="text" name="paymentTypeId" value="${userPaymentMethod.paymentTypeID}"><br> 
-		Card Provider: <input type="text" name="cardProvider" value="${userPaymentMethod.cardProvider}"><br> 
-		Account Number: <input type="text" name="accountNumber" value="${userPaymentMethod.accountNumber}"><br>
-		Expiry Date: <input type="text" name="expiryDate" value="${userPaymentMethod.expiryDate}"><br> 
-		<input type="submit" value="Update">
-	</form>
+    	<h2>Update Payment Info Below</h2>
+    	<h4>*Filling this and Address Info is mandatory before placing order.*</h4><br>
+    	<input type="hidden" name="upmId" value="${userPaymentMethod.UPM_ID}" readonly>
+    	<input type="hidden" name="userId" value="${userPaymentMethod.user_id}" readonly>
+    	Card Provider: <input type="text" name="cardProvider" value="${userPaymentMethod.cardProvider}"><br> 
+    	Card Number: <input type="number" maxlength="20" name="cardNumber" value="${userPaymentMethod.cardNumber}"><br>
+    	CVV: <input type="number" maxlength="3" name="cvv" value="${userPaymentMethod.CVV}"><br> 
+    	Expiry Year: <input type="number" maxlength="2" name="expYear" value="${userPaymentMethod.exp_year}"><br>
+   	    Expiry Month: <input type="number" maxlength="2" name="expMonth" value="${userPaymentMethod.exp_month}"><br>
+    <input type="submit" value="Update">
+    </form>
 	<br><br>
  
 </body>
