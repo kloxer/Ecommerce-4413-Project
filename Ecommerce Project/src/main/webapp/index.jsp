@@ -42,11 +42,26 @@
             <li><a href="#">Blog</a></li>
         </ul>
     </div>
-  <h1>Catalogue of Our Items</h1>
-  <ul>
-    <c:forEach var="item" items="${items}">
-      <li>${item.name} - $ ${item.price}</li>
-    </c:forEach>
-  </ul>
+    
+<h1>Catalogue of Our Items</h1>
+
+<ul style="list-style-type: none; display: flex; flex-wrap: wrap; padding: 0; margin: 0;">
+  <c:forEach var="item" items="${productDisplays}">
+    <li style="flex-basis: calc(33.333% - 20px); margin: 10px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1); overflow: hidden;">
+      <div style="height: 200px; width: 100%; display: flex; align-items: center; justify-content: center; background: #f9f9f9;">
+        <img src="./images/${item.id}.jpg" alt="${item.pName}" style="max-height: 100%; max-width: 100%;">
+      </div>
+      <div style="padding: 15px; text-align: center;">
+        <h3 style="margin-top: 0;">${item.pName}</h3>
+        <p>${item.pDescription}</p>
+        <p>Quantity: ${item.quantityRemaining}</p>
+        <p>Price: $${item.price}</p>
+      </div>
+    </li>
+  </c:forEach>
+</ul>
+
+
+
 </body>
 </html>
