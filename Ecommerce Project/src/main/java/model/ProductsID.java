@@ -13,6 +13,12 @@ public class ProductsID implements Serializable{
 		
 	}
 
+	public ProductsID(int prodID2, String pName2, String pDescription2) {
+		this.prodID = prodID2;
+		this.pName = pName2;
+		this.pDescription = pDescription2;
+	}
+
 	public int getProdID() {
 		return prodID;
 	}
