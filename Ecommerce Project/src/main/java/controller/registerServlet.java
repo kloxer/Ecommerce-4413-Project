@@ -58,16 +58,32 @@ public class registerServlet extends HttpServlet {
         newUser.setUsername(username);
         newUser.setPassword(password);
         
-      
-        boolean added = userDAO.addUser(newUser);
-        if (added) {
-        	User user = userDAO.getUserByUsernamePassword(username, password);
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-        	response.sendRedirect("./account");
-        } else {
-        	response.sendRedirect("register.jsp");
-        }
+        //Check if entered username Exists
+        boolean userExists = userDAO.userExists(username);
+        if (userExists) {
+			//Notify to pick another username
+			request.setAttribute("error", "Username: " + username + " already exists. "
+					+ "Please choose a different username.");
+			request.setAttribute("firstname", firstname);
+			request.setAttribute("lastname", lastname);
+			request.setAttribute("phone", phoneNumber);
+			request.setAttribute("username", username);
+			request.getRequestDispatcher("register.jsp").forward(request, response);
+		}
+        
+        //Attempt to add user to database
+        boolean userAdded = userDAO.addUser(newUser);
+
+		if (userAdded) {
+			// Successful registration
+			User user = userDAO.getUserByUsernamePassword(username, password);
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			// Redirect to account for additional account info input
+			response.sendRedirect("./account");
+		} else {
+			response.sendRedirect("register.jsp");
+		}
         
 	}
 

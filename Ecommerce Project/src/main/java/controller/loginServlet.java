@@ -45,17 +45,31 @@ public class loginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
-        String password = request.getParameter("password");
+		String password = request.getParameter("password");
 
-        User user = userDAO.getUserByUsernamePassword(username, password);
-        
-        if (user != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            response.sendRedirect("./");
-        }else {
-        	response.sendRedirect("login.jsp");
-        }
+		boolean userExists = userDAO.userExists(username);
+
+		if (!userExists) {
+			// The user does not exist in DB notify user
+			request.setAttribute("error", "Username: " +  username + " does not exist.");
+			request.setAttribute("username", username);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		} else {
+
+			User user = userDAO.getUserByUsernamePassword(username, password);
+
+			if (user != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				//Successful login, send to home page
+				response.sendRedirect("./");
+			} else {
+				// User Input password is wrong. Notify user.
+				request.setAttribute("error", "Incorrect password.");
+				request.setAttribute("username", username);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+		}
         
 	}
 
