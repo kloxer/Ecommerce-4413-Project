@@ -9,7 +9,7 @@ public class UserPaymentMethod implements Serializable {
     private int user_id;
     private int CVV;
     private String cardProvider;
-    private int cardNumber;
+    private String cardNumber;
     private int exp_year;
     private int exp_month;
 
@@ -48,11 +48,11 @@ public class UserPaymentMethod implements Serializable {
         this.cardProvider = cardProvider;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 

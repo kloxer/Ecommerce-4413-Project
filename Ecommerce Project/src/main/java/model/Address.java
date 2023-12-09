@@ -6,10 +6,9 @@ public class Address implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private int unitNumber;
+	private String unitNumber;
     private String streetNumber;
 	private String addressLine1;
-    private String addressLine2;
     private String city;
     private String region;
     private String postalCode;
@@ -27,11 +26,11 @@ public class Address implements Serializable{
 		this.id = id;
 	}
 
-	public int getUnitNumber() {
+	public String getUnitNumber() {
 		return unitNumber;
 	}
 
-	public void setUnitNumber(int unitNumber) {
+	public void setUnitNumber(String unitNumber) {
 		this.unitNumber = unitNumber;
 	}
 
@@ -49,14 +48,6 @@ public class Address implements Serializable{
 
 	public void setAddressLine1(String addressLine1) {
 		this.addressLine1 = addressLine1;
-	}
-
-	public String getAddressLine2() {
-		return addressLine2;
-	}
-
-	public void setAddressLine2(String addressLine2) {
-		this.addressLine2 = addressLine2;
 	}
 
 	public String getCity() {
