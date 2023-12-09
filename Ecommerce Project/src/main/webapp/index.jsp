@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--   <link rel="stylesheet" href="../css/header.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <title>Display Items--Jon Doe</title>
+  <title>Display Items--Jon Do</title>
       <style>
         /* Customize the active tab color */
         .tabs ul li.is-active a {
