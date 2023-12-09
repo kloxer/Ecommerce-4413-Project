@@ -17,14 +17,18 @@
 	<br>
 	<form action="registerServlet" method="post"
 		onsubmit="return validateRegister()">
+		<c:if test="${not empty error}">
+			<p style="color: red;">${error}</p>
+		</c:if>
 		<h2>Register</h2>
-		First name: <input type="text" name="firstname"><br> 
-		Last name: <input type="text" name="lastname"><br> 
-		Phone: <input type="number" name="phone"><br> 
-		Username: <input type="text" name="username"><br> 
+    	First name: <input type="text" name="firstname" value="${empty firstname ? '' : firstname}"><br> 
+    	Last name: <input type="text" name="lastname" value="${empty lastname ? '' : lastname}"><br> 
+    	Phone number: <input type="text" name="phone" value="${empty phone ? '' : phone}"><br> 
+    	Username: <input type="text" name="username" value="${empty username ? '' : username}"><br>
 		Password: <input type="password" name="password"><br> 
-		<input type="submit" value="Register">
-	</form>
+		<input type="submit" value="Register"> <br>
+		
+	</form><br>
 
 </body>
 </html>
