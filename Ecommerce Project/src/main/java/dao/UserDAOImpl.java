@@ -40,26 +40,6 @@ public class UserDAOImpl implements UserDAO{
         }
     }
     
-    //check if username exists
-    private boolean userExists(String username) {
-        String sql = "SELECT * FROM User WHERE Username = ?";
-        Connection connection = null;
-        try {
-            connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
-            ResultSet resultSet = statement.executeQuery();
-            //True if user Exists
-            return resultSet.next(); 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            // False if Not
-            return false; 
-        } finally {
-            closeConnection(connection);
-        }
-    }
-    
     // Method to generate a unique User_ID for a new user
     private int generateUniqueUserID(Connection connection) throws SQLException {
         int uniqueUserID = 0;
@@ -75,6 +55,27 @@ public class UserDAOImpl implements UserDAO{
         return uniqueUserID + 1;
     }
     
+    //check if username exists
+    public boolean userExists(String username) {
+        String sql = "SELECT * FROM User WHERE Username = ?";
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            // True when the username is found
+            return resultSet.next(); 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // False if Not
+            return false; 
+        } finally {
+            closeConnection(connection);
+        }
+    }
+    
+    //Add User model to database
     public boolean addUser(User user) {
     	//Check is Username already Exists
         if (userExists(user.getUsername())) {
@@ -88,7 +89,7 @@ public class UserDAOImpl implements UserDAO{
             //Generate a unique User_ID for this User
             int userId = generateUniqueUserID(connection);
             
-            //Add default payment method entry for current User ID
+            //Add default payment and address entry for current User ID
             UserPaymentDAO userDAO = new UserPaymentDAOImpl();
             userDAO.addDefUserPaymentMethod(userId);
             
@@ -104,46 +105,21 @@ public class UserDAOImpl implements UserDAO{
 
                 statement.executeUpdate();
                 
+                //Add default address now that user exists
+                AddressDAO addrDAO = new AddressDAOImpl();
+                addrDAO.addDefAddressMethod(userId);
                 
         } catch (SQLException | NamingException ex) {
             ex.printStackTrace();
         } finally {
             closeConnection(connection);
         }
+        
         //User has been added
         return true;
     }
     
-    
-    public User getUser(int userId) {
-        User user = null;
-        //Find user where ID matches
-        String sql = "SELECT * FROM User WHERE User_ID = ?";
-        Connection connection = null;
-        try {
-            connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, userId);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                user = new User();
-                user.setUserId(resultSet.getInt("User_ID"));
-                user.setUsername(resultSet.getString("Username"));
-                user.setPhoneNumber(resultSet.getString("Phone_number"));
-                user.setPassword(resultSet.getString("Password"));
-                user.setFirstName(resultSet.getString("First_name"));
-                user.setLastName(resultSet.getString("Last_name"));
-                user.setAdmin(resultSet.getBoolean("isAdmin"));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            closeConnection(connection);
-        }
-        return user;
-    }
-    
+    //Retrieve a user by their Username and Password
     public User getUserByUsernamePassword(String username, String password) {
         User user = null;
         //Find user where Username and Password match
@@ -172,6 +148,36 @@ public class UserDAOImpl implements UserDAO{
             closeConnection(connection);
         }
         //Return the User
+        return user;
+    }
+    
+    //Get a User by the ID
+    public User getUser(int userId) {
+        User user = null;
+        //Find user where ID matches
+        String sql = "SELECT * FROM User WHERE User_ID = ?";
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                user = new User();
+                user.setUserId(resultSet.getInt("User_ID"));
+                user.setUsername(resultSet.getString("Username"));
+                user.setPhoneNumber(resultSet.getString("Phone_number"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setFirstName(resultSet.getString("First_name"));
+                user.setLastName(resultSet.getString("Last_name"));
+                user.setAdmin(resultSet.getBoolean("isAdmin"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
         return user;
     }
 
