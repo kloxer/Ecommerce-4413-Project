@@ -11,6 +11,7 @@ public class Purchase implements Serializable {
     private int addressId;
     private Date date;
     private double total;
+    private boolean isFilled;
 
     public int getPurchaseId() {
         return purchaseId;
@@ -50,5 +51,13 @@ public class Purchase implements Serializable {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+    
+    public boolean isFilled() {
+        return isFilled;
+    }
+
+    public void setFilled(boolean filled) {
+        isFilled = filled;
     }
 }
