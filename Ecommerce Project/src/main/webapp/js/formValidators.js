@@ -98,7 +98,7 @@ function AddressAndPayValidate() {
 		return false;
 	}
 	
-	if (expYear === currentYear && expMonth < currentMonthIndex){
+	if (expYear == currentYear && expMonth < currentMonthIndex){
 		alert('Your card is expired. Check month.');
 		return false;
 	}
@@ -189,7 +189,7 @@ function validatePaymentMeth() {
 		return false;
 	}
 	
-	if (expYear === currentYear && expMonth < currentMonthIndex){
+	if (expYear == currentYear && expMonth < currentMonthIndex){
 		alert('Your card is expired. Check month.');
 		return false;
 	}
@@ -213,6 +213,3 @@ function validateAddress() {
 
     return true;
 }
-
-
-
