@@ -78,7 +78,7 @@ function AddressAndPayValidate() {
 	}
 
     // Validate CVV length
-    if (cvv.length !== 3) {
+    if (cvv.length < 3 || cvv.length > 4) {
         alert('Please enter a valid CVV.');
         return false;
     }
@@ -163,7 +163,7 @@ function validatePaymentMeth() {
 	}
 
     // Validate CVV length
-    if (cvv.length !== 3) {
+    if (cvv.length < 3 || cvv.length > 4) {
         alert('Please enter a valid CVV.');
         return false;
     }
