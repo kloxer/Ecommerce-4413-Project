@@ -132,8 +132,8 @@ function GeneralInfoVal() {
 function validatePaymentMeth() {
     const cardNumber = document.getElementsByName("cardNumber")[0].value;
     const cvv = document.getElementsByName("cvv")[0].value;
-    const expYear = document.getElementsByName("expYear")[0].value;
-    const expMonth = document.getElementsByName("expMonth")[0].value;
+    var expYear = document.getElementsByName("expYear")[0].value;
+    var expMonth = document.getElementsByName("expMonth")[0].value;
 	
     // Validation if all inputs are provided
     if (cardNumber.trim() === "") {
