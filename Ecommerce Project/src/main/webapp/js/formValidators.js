@@ -120,7 +120,7 @@ function GeneralInfoVal() {
 
     // Validate phone number format
 	var phoneRegex = /^\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
-	if (!phoneRegex.test(phone)) {
+	if (!phoneRegex.test(phoneNumber)) {
 		alert('Please enter a valid phone number (e.g. 8005550185, 800-555-0185, or (800)-555-0185).');
 		return false;
 	}
