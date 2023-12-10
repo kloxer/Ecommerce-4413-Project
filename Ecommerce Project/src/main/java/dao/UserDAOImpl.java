@@ -180,5 +180,33 @@ public class UserDAOImpl implements UserDAO{
         }
         return user;
     }
+    
+    public boolean updateUserDetails(int userId, String firstName, String lastName, String phoneNumber) {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "UPDATE User SET First_name = ?, Last_name = ?, Phone_number = ? WHERE User_ID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, phoneNumber);
+            statement.setInt(4, userId);
+
+            int rowsUpdated = statement.executeUpdate();
+
+         
+            if (rowsUpdated > 0) {
+            	// Updated successful
+                return true; 
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+        // Update failed
+        return false; 
+    }
+
 
 }

@@ -12,4 +12,5 @@ public interface UserDAO {
 
 	User getUser(int userId);
 	
+	boolean updateUserDetails(int userId, String firstName, String lastName, String phoneNumber);
 }

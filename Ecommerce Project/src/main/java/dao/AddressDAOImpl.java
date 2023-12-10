@@ -70,10 +70,10 @@ public class AddressDAOImpl implements AddressDAO {
 
             // Insert empty fields for entry
             PreparedStatement addressStatement = connection.prepareStatement(
-                    "INSERT INTO Address (id, Unit_number, street_number, address_line1, city, region, postal_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-         
+                    "INSERT INTO Address (id, Unit_number, address_line1, city, region, postal_code, country) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
             int addressID = generateUniqueAddressID(connection);
-            
+
             addressStatement.setInt(1, addressID);
             addressStatement.setString(2, "");
             addressStatement.setString(3, "");
@@ -81,7 +81,6 @@ public class AddressDAOImpl implements AddressDAO {
             addressStatement.setString(5, "");
             addressStatement.setString(6, "");
             addressStatement.setString(7, "");
-            addressStatement.setString(8, "");
 
             addressStatement.executeUpdate();
             
@@ -108,15 +107,14 @@ public class AddressDAOImpl implements AddressDAO {
             int addressID = generateUniqueAddressID(connection);
 
             PreparedStatement addressStatement = connection.prepareStatement(
-                    "INSERT INTO Address (id, Unit_number, street_number, address_line1, city, region, postal_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO Address (id, Unit_number, address_line1, city, region, postal_code, country) VALUES (?, ?, ?, ?, ?, ?, ?)");
             addressStatement.setInt(1, addressID);
             addressStatement.setString(2, address.getUnitNumber());
-            addressStatement.setString(3, address.getStreetNumber());
-            addressStatement.setString(4, address.getAddressLine1());
-            addressStatement.setString(5, address.getCity());
-            addressStatement.setString(6, address.getRegion());
-            addressStatement.setString(7, address.getPostalCode());
-            addressStatement.setString(8, address.getCountry());
+            addressStatement.setString(3, address.getAddressLine1());
+            addressStatement.setString(4, address.getCity());
+            addressStatement.setString(5, address.getRegion());
+            addressStatement.setString(6, address.getPostalCode());
+            addressStatement.setString(7, address.getCountry());
 
             addressStatement.executeUpdate();
 
@@ -139,16 +137,15 @@ public class AddressDAOImpl implements AddressDAO {
             connection = getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE Address SET Unit_number=?, street_number=?, address_line1=?, city=?, region=?, postal_code=?, country=? WHERE id=?");
+                    "UPDATE Address SET Unit_number=?, address_line1=?, city=?, region=?, postal_code=?, country=? WHERE id=?");
 
             statement.setString(1, updatedAddress.getUnitNumber());
-            statement.setString(2, updatedAddress.getStreetNumber());
-            statement.setString(3, updatedAddress.getAddressLine1());
-            statement.setString(4, updatedAddress.getCity());
-            statement.setString(5, updatedAddress.getRegion());
-            statement.setString(6, updatedAddress.getPostalCode());
-            statement.setString(7, updatedAddress.getCountry());
-            statement.setInt(8, updatedAddress.getId());
+            statement.setString(2, updatedAddress.getAddressLine1());
+            statement.setString(3, updatedAddress.getCity());
+            statement.setString(4, updatedAddress.getRegion());
+            statement.setString(5, updatedAddress.getPostalCode());
+            statement.setString(6, updatedAddress.getCountry());
+            statement.setInt(7, updatedAddress.getId());
 
             int rowsChanged = statement.executeUpdate();
 
@@ -181,7 +178,6 @@ public class AddressDAOImpl implements AddressDAO {
             if (resultSet.next()) {
                 latestAddress.setId(resultSet.getInt("id"));
                 latestAddress.setUnitNumber(resultSet.getString("Unit_number"));
-                latestAddress.setStreetNumber(resultSet.getString("street_number"));
                 latestAddress.setAddressLine1(resultSet.getString("address_line1"));
                 latestAddress.setCity(resultSet.getString("city"));
                 latestAddress.setRegion(resultSet.getString("region"));
@@ -207,7 +203,7 @@ public class AddressDAOImpl implements AddressDAO {
             connection = getConnection();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT a.* FROM Address a JOIN UserAddress ua ON a.id = ua.Address_ID WHERE ua.UserAd_ID = ?");
+                    "SELECT a.* FROM Address a JOIN UserAddress ua ON a.id = ua.Address_ID WHERE ua.UserAd_ID = ? ORDER BY a.id DESC");
             statement.setInt(1, userID);
 
             ResultSet resultSet = statement.executeQuery();
@@ -216,7 +212,6 @@ public class AddressDAOImpl implements AddressDAO {
                 Address address = new Address();
                 address.setId(resultSet.getInt("id"));
                 address.setUnitNumber(resultSet.getString("Unit_number"));
-                address.setStreetNumber(resultSet.getString("street_number"));
                 address.setAddressLine1(resultSet.getString("address_line1"));
                 address.setCity(resultSet.getString("city"));
                 address.setRegion(resultSet.getString("region"));

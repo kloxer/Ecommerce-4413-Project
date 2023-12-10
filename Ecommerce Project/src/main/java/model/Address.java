@@ -34,14 +34,6 @@ public class Address implements Serializable{
 		this.unitNumber = unitNumber;
 	}
 
-	public String getStreetNumber() {
-		return streetNumber;
-	}
-
-	public void setStreetNumber(String streetNumber) {
-		this.streetNumber = streetNumber;
-	}
-
 	public String getAddressLine1() {
 		return addressLine1;
 	}

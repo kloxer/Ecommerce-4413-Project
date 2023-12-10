@@ -73,8 +73,25 @@ public class AccountServlet extends HttpServlet {
 					//If new account, redirect to new account forum
 					request.getRequestDispatcher("new_account.jsp").forward(request, response);
 				} else {
-					//Else redirect to accountInfo.jsp
-					request.getRequestDispatcher("accountInfo.jsp").forward(request, response);
+						
+						String section = request.getParameter("section");
+						
+						if(section == null) {
+							//Redirect to General Info for account
+							request.getRequestDispatcher("account_general.jsp").forward(request, response);
+						} else if (section.equals("paymeth")){
+							//Redirect to Payment Method for account
+							request.getRequestDispatcher("account_paymeth.jsp").forward(request, response);
+						} else if (section.equals("addresses")){
+							List<Address> addrList = addressDAO.getUserAddresses(userId);
+							request.setAttribute("addrList", addrList);
+							//Redirect to Addresses for Account
+							request.getRequestDispatcher("account_addresses.jsp").forward(request, response);
+						} else if (section.equals("addressadd")){
+							//Redirect to Payment Method for account
+							request.getRequestDispatcher("account_add_address.jsp").forward(request, response);
+						}
+						
 				}
 				
 			} else {
