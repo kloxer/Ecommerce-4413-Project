@@ -23,7 +23,7 @@
  	<form action="UpdateInfoServlet?type=address" method="post" onsubmit="return validateAddress()">
         <h2>Edit Address</h2>
 
-        <input type="hidden" id="addrList" name="addrList" value='${addrListJson}'> <!-- Assuming addrListJson contains serialized addrList -->
+        <input type="hidden" id="addrList" name="addrList" value='${addrListJson}'>
 
         <label for="addresses">Choose an address:</label>
         <select id="addresses" name="addressId">
@@ -79,7 +79,7 @@
 
             // Obtain data attributes from selected address
             var addressId = selectedAddress.value;
-            var unitNumber = selectedAddress.getAttribute('data-data');
+            var unitNumber = selectedAddress.getAttribute('data-unit');
             var addressLine1 = selectedAddress.getAttribute('data-address');
             var city = selectedAddress.getAttribute('data-city');
             var region = selectedAddress.getAttribute('data-region');
