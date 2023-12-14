@@ -21,6 +21,9 @@
     %>
         <p>Your cart is empty.</p>
         <% } else { %>
+
+            <!-- Need for checkout -->
+
             <table>
                 <tr>
                     <th>Product ID</th>
@@ -57,6 +60,13 @@
         
             </table>
             <p>Total: <%= cart.getTotalPrice() %></p>
+
+            <!-- Checkout button -->
+            <form action="checkout" method="post">
+
+                <input type="submit" value="Checkout">
+            
+            </form>
         <% } %>
 
 
@@ -64,6 +74,7 @@
         <a href="products">
             <button>Shop for more products</button>
         </a>
+
 
 </body>
 </html>

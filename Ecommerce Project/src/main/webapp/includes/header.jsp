@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%@ page import="java.util.Map" %>
+<%@ page import="model.*" %>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +23,12 @@
             <button type="button">Search</button>
         </div>
         <div class="user-actions">
-        	<span class ="cart"><a href="cart.jsp">Cart &#x1F6D2;</a> </span>
-    <% 
+
+            <span class="cart">
+                <a href="cart.jsp">Cart &#x1F6D2; </a>
+            </span>    
+
+            <% 
         Object userObject = session.getAttribute("user");
         if (userObject != null) {
             // For when user is logged in
