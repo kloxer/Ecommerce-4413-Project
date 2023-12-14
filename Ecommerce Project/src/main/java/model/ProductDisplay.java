@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class ProductDisplay  implements Serializable{
 	
@@ -77,7 +78,22 @@ public class ProductDisplay  implements Serializable{
 		this.sku = sku;
 	}
 	
-	
+	@Override
+public boolean equals(Object obj) {
+    if (this == obj) {
+        return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+        return false;
+    }
+    ProductDisplay that = (ProductDisplay) obj;
+    return Objects.equals(prodID, that.prodID);
+}
+
+@Override
+public int hashCode() {
+    return Objects.hash(prodID);
+}
 	
 
 }

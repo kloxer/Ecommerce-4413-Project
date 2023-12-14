@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="model.*" %>
-
-<!DOCTYPE html>
+    <%@ page import="model.*" %>
+    <%@ page import="java.util.Map" %>
+    <!DOCTYPE html>
 <html>
 <head>
     <meta charset="ISO-8859-1">
@@ -26,21 +26,42 @@
                     <th>Product ID</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Quantity</th>
                 </tr>
-                <% for (ProductDisplay item : cart.getItems()) { %>
+
+
+                <% for (Map.Entry<ProductDisplay, Integer> entry : cart.getItems().entrySet()) { %>
                     <tr>
-                        <td><%= item.getProdID() %></td>
-                        <td><%= item.getpName() %></td>
-                        <td><%= item.getPrice() %></td>
+                        <td><%= entry.getKey().getProdID() %></td>
+                        <td><%= entry.getKey().getpName() %></td>
+                        <td><%= entry.getKey().getPrice() %></td>
+                        <td>
+                            <form action="updateQuantity" method="post"> 
+                                <input type="hidden" name="prodID" value="<%= entry.getKey().getProdID() %>">
+                                <input type="number" name="quantity" value="<%= entry.getValue() %>" min="1">
+                                <input type="submit" value="Update">
+                            </form>
+
+                        </td>
+
+                        <td>
+                            <form action="deleteItem" method="post">
+                                <input type="hidden" name="prodID" value="<%= entry.getKey().getProdID() %>">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
                     </tr>
                 <% } %>
+        
             </table>
             <p>Total: <%= cart.getTotalPrice() %></p>
         <% } %>
+
+
 
         <a href="products">
             <button>Shop for more products</button>
         </a>
 
-        </body>
-        </html>
+</body>
+</html>

@@ -1,31 +1,38 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cart {
-    private List<ProductDisplay> items;
+    private Map<ProductDisplay, Integer> items;
 
     public Cart() {
-        items = new ArrayList<>();
+        items = new HashMap<>();
     }
 
     public void addItem(ProductDisplay item) {
-        items.add(item);
+        items.put(item, items.getOrDefault(item, 0) + 1);
     }
 
     public void removeItem(ProductDisplay item) {
-        items.remove(item);
+        if (items.containsKey(item)) {
+            int count = items.get(item);
+            if (count > 1) {
+                items.put(item, count - 1);
+            } else {
+                items.remove(item);
+            }
+        }
     }
 
-    public List<ProductDisplay> getItems() {
+    public Map<ProductDisplay, Integer> getItems() {
         return items;
     }
 
     public double getTotalPrice() {
         double total = 0.0;
-        for (ProductDisplay item : items) {
-            total += item.getPrice();
+        for (Map.Entry<ProductDisplay, Integer> entry : items.entrySet()) {
+            total += entry.getKey().getPrice() * entry.getValue();
         }
         return total;
     }
