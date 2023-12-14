@@ -17,7 +17,7 @@
             <button type="button">Search</button>
         </div>
         <div class="user-actions">
-        	<span class ="cart"><a href="./">Cart &#x1F6D2;</a> </span>
+        	<span class ="cart"><a href="cart.jsp">Cart &#x1F6D2;</a> </span>
     <% 
         Object userObject = session.getAttribute("user");
         if (userObject != null) {
