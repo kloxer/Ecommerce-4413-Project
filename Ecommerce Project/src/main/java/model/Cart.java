@@ -25,6 +25,12 @@ public class Cart {
         }
     }
 
+
+    public void removeItemUsingID(String prodID) {
+        items.entrySet().removeIf(entry -> String.valueOf(entry.getKey().getProdID()).equals(prodID));
+    }
+
+    
     public Map<ProductDisplay, Integer> getItems() {
         return items;
     }
@@ -36,4 +42,15 @@ public class Cart {
         }
         return total;
     }
+
+    public void updateQuantity(String prodID, int newQuantity) {
+        for (ProductDisplay product : items.keySet()) {
+            if (String.valueOf(product.getProdID()).equals(prodID)) {
+                items.put(product, newQuantity);
+                break;
+            }
+        }
+    }
+
+
 }

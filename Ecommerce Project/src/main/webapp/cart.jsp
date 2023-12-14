@@ -36,6 +36,8 @@
                         <td><%= entry.getKey().getpName() %></td>
                         <td><%= entry.getKey().getPrice() %></td>
                         <td>
+                            <!-- //servlet updateQuantity Should be easy to implement, get cart, update quantity, return
+                            //and the same for deleteItem -->
                             <form action="updateQuantity" method="post"> 
                                 <input type="hidden" name="prodID" value="<%= entry.getKey().getProdID() %>">
                                 <input type="number" name="quantity" value="<%= entry.getValue() %>" min="1">
