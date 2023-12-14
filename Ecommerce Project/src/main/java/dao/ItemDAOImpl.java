@@ -72,6 +72,38 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
+    public Item findItemByID(String itemID) {
+        Item item = null;
+
+        String sql = "SELECT * FROM Item WHERE itemID = " + itemID;
+
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                System.out.println("SUCESS FOR ITEM FOUND");
+                item = new Item();
+                item.setItemID(resultSet.getString("itemID"));
+                item.setName(resultSet.getString("name"));
+                item.setDescription(resultSet.getString("description"));
+                item.setCategory(resultSet.getString("category"));
+                item.setBrand(resultSet.getString("brand"));
+                item.setQuantity(resultSet.getInt("quantity"));
+                item.setPrice(resultSet.getInt("price"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+        return item;
+    }
+
+    @Override
     public List<Item> searchItemsByKeyword(String keyWord) {
         List<Item> result = new ArrayList<>();
 

@@ -6,6 +6,8 @@ import model.Item;
 
 public interface ItemDAO {
 
+    Item findItemByID(String itemID);
+
 	List<Item> findAllItems();
 
 	List<Item> searchItemsByKeyword(String keyWord);

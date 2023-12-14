@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.*;
 import model.*;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/products")
 public class ProductsServlet extends HttpServlet {
@@ -27,19 +28,22 @@ public class ProductsServlet extends HttpServlet {
         // Create an instance of your ProductDisplayDAO to retrieve data
         ProductDisplayDAO productDisplayDAO;
 
-        try {
+        // ...
 
-			productDisplayDAO = new ProductDisplayDAOImpl();
-			List<ProductDisplay> productDisplays = productDisplayDAO.getAllProducts();
-            request.setAttribute("productDisplays", productDisplays);
+        try {
+            productDisplayDAO = new ProductDisplayDAOImpl();
+            List<ProductDisplay> productDisplays = productDisplayDAO.getAllProducts();
+            
+            HttpSession session = request.getSession(); // Initialize the session object
+            session.setAttribute("productDisplays", productDisplays);
 
             //giving to index.jsp for now
             request.getRequestDispatcher("/index.jsp").forward(request, response);
-  
-		} catch (NamingException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+        } catch (NamingException | SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
  
         request.getRequestDispatcher("/index.jsp").forward(request, response);

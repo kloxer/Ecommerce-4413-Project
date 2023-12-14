@@ -52,7 +52,7 @@
         <img src="./images/${item.id}.jpg" alt="${item.pName}" style="max-height: 100%; max-width: 100%;">
       </div>
       <div style="padding: 15px; text-align: center;">
-        <h3 style="margin-top: 0;">${item.pName}</h3>
+        <h3 style="margin-top: 0;"><a href="ItemServlet?id=${item.id}">${item.pName}</a></h3>
         <p>${item.pDescription}</p>
         <p>Quantity: ${item.quantityRemaining}</p>
         <p>Price: $${item.price}</p>

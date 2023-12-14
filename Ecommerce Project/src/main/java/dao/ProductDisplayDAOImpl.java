@@ -21,6 +21,9 @@ public class ProductDisplayDAOImpl implements ProductDisplayDAO {
         dSource = (DataSource) ctx.lookup("java:comp/env/jdbc/ecomDB");
     }
 
+
+
+    
     @Override
     public void addProduct(ProductDisplay product) throws SQLException {
         String insertProductSQL = "INSERT INTO Products (ProductID, P_name, P_description) VALUES (?, ?, ?)";

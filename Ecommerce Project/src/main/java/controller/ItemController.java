@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ItemDAO;
 import dao.ItemDAOImpl;
@@ -43,7 +44,7 @@ public class ItemController extends HttpServlet {
 			throws ServletException, IOException 
 	{
 		List<Item> items = itemDAO.findAllItems();
-		request.setAttribute("items", items);
+ 		request.setAttribute("items", items);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 	}
