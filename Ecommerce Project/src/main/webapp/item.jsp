@@ -47,5 +47,9 @@
         <p>Quantity Remaining: ${item.quantityRemaining}</p>
         <p>Price: ${item.price}</p>
         
+        <form action="addToCartServlet" method="post">
+            <input type="hidden" name="prodID" value="${item.prodID}">
+            <input type="submit" value="Add to Cart">
+        </form>
     </body>
     </html>
