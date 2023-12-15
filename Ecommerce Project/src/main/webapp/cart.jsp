@@ -7,11 +7,15 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Shopping Cart</title>
+    <link rel="stylesheet" href="./css/shopexp.css">
 </head>
 <body>
+
     <%@ include file="./includes/header.jsp"%>
 
-    <h1>Your Shopping Cart</h1>
+	<h1>Your Shopping Cart</h1>
+	<div class="container">
+	<div class="cart-items">
     <%
         // Get the cart from the session
         Cart cart = (Cart) session.getAttribute("cart");
@@ -58,7 +62,10 @@
                     </tr>
                 <% } %>
         
-            </table>
+            </table><br>
+		</div>
+		</div>
+            <div class="cart-summary">
             <p>Total: <%= cart.getTotalPrice() %></p>
 
             <!-- Checkout button -->
@@ -66,7 +73,8 @@
 
                 <input type="submit" value="Checkout">
             
-            </form>
+            </form> <br>
+            
         <% } %>
 
 
@@ -74,6 +82,9 @@
         <a href="products">
             <button>Shop for more products</button>
         </a>
+        </div>
+      
+
 
 
 </body>
