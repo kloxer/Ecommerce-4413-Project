@@ -15,6 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--   <link rel="stylesheet" href="../css/header.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="./css/shopexp.css">
   <title>Display Items--Jon Doe</title>
       <style>
         /* Customize the active tab color */
@@ -39,17 +40,26 @@
         <title>Item Details</title>
     </head>
     <body>
-        <h1>Item Details</h1>
-        <img src="./images/${item.id}.jpg" alt="${item.pName}" style="max-height: 10vh; max-width: 10vh;">
-        <p>ID: ${item.prodID}</p>
-        <p>Name: ${item.pName}</p>
-        <p>Description: ${item.pDescription}</p>
-        <p>Quantity Remaining: ${item.quantityRemaining}</p>
-        <p>Price: ${item.price}</p>
-        
-        <form action="addToCartServlet" method="post">
-            <input type="hidden" name="prodID" value="${item.prodID}">
-            <input type="submit" value="Add to Cart">
-        </form>
-    </body>
+	<div class="container">
+		<div class="columns">
+			<div class="image-frame">
+				<img class="product-image" src="./images/${item.id}.jpg"
+					alt="${item.pName}">
+			</div>
+			<div class="column">
+				<h1 class="title">${item.pName}</h1>
+				<p>ID: ${item.prodID}</p>
+				<p>Name: ${item.pName}</p>
+				<p>Description: ${item.pDescription}</p>
+				<p>Quantity Remaining: ${item.quantityRemaining}</p>
+				<p class="price">Price: ${item.price}</p>
+
+				<form action="addToCartServlet" method="post">
+					<input type="hidden" name="prodID" value="${item.prodID}">
+					<input class="addcartbutton" type="submit" value="Add to Cart">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
     </html>
