@@ -65,6 +65,8 @@ public class UpdateInfoServlet extends HttpServlet {
             handleAddressUpdate(request, response);
         }else if ("addressadd".equals(type)) {
             handleAddressAdd(request, response);
+        }else if ("addressrem".equals(type)) {
+            handleAddressRem(request, response);
         }
        
 	}
@@ -260,6 +262,25 @@ public class UpdateInfoServlet extends HttpServlet {
             request.getRequestDispatcher("account_add_address.jsp").forward(request, response);
         }
     }
+    
+    //Handler to remove address
+    private void handleAddressRem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        int addressId = Integer.parseInt(request.getParameter("addressId"));
+
+        boolean addressRemoved = addressDAO.removeAddressByID(userId, addressId);
+
+        if (addressRemoved) {
+            // If successfully deleted, notify on page
+            request.setAttribute("msg", "Address removed successfully!");
+            request.getRequestDispatcher("./account?section=addresses").forward(request, response);
+        } else {
+            // If removal fails, notify on page constraints
+            request.setAttribute("msg", "Failed to remove address. At least one address is required. Consider adding or updating.");
+            request.getRequestDispatcher("./account?section=addresses").forward(request, response);
+        }
+    }
+
 
 
 }

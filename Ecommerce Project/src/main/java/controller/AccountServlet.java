@@ -88,7 +88,7 @@ public class AccountServlet extends HttpServlet {
 							//Redirect to Addresses for Account
 							request.getRequestDispatcher("account_addresses.jsp").forward(request, response);
 						} else if (section.equals("addressadd")){
-							//Redirect to Payment Method for account
+							//Redirect to add new Address for account
 							request.getRequestDispatcher("account_add_address.jsp").forward(request, response);
 						}
 						

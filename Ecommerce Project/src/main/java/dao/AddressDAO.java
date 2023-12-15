@@ -16,5 +16,7 @@ public interface AddressDAO {
 	Address getLatestAddressMethod(int userID);
 	
 	List<Address> getUserAddresses(int userID);
+	
+	boolean removeAddressByID(int userID, int addressID);
 
 }

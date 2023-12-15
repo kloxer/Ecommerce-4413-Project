@@ -229,6 +229,49 @@ public class AddressDAOImpl implements AddressDAO {
         return userAddresses;
     }
     
+    //Method to remove Address by its ID if more than one exists
+    public boolean removeAddressByID(int userID, int addressID) {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+
+            // Check if only address for user
+            PreparedStatement countStatement = connection.prepareStatement(
+                    "SELECT COUNT(*) AS address_count FROM UserAddress WHERE UserAd_ID = ?");
+            countStatement.setInt(1, userID);
+            ResultSet countResult = countStatement.executeQuery();
+
+            int addressCount = 0;
+            if (countResult.next()) {
+                addressCount = countResult.getInt("address_count");
+            }
+            
+            //If only address or there is none, return false (don't delete)
+            if (addressCount <= 1) {
+                return false;
+            } else {
+                // Delete address if at least one other exists
+                PreparedStatement deleteStatement = connection.prepareStatement(
+                        "DELETE FROM Address WHERE id = ? AND id IN (SELECT Address_ID FROM UserAddress WHERE UserAd_ID = ?)");
+                deleteStatement.setInt(1, addressID);
+                deleteStatement.setInt(2, userID);
+
+                int rowsImpacted = deleteStatement.executeUpdate();
+                //Check if successfully executed
+                if (rowsImpacted > 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+
+        //Return false if deletion fails
+        return false;
+    }
+
 
 
 }

@@ -20,7 +20,7 @@
         </ul>
     </div>
 
- 	<form action="UpdateInfoServlet?type=address" method="post" onsubmit="return validateAddress()">
+ 	<form id="addressForm" action="UpdateInfoServlet?type=address" method="post" onsubmit="return validateAddress()">
         <h2>Edit Address</h2>
 
         <input type="hidden" id="addrList" name="addrList" value='${addrListJson}'>
@@ -67,8 +67,21 @@
         <label for="country">*Country:</label>
         <input type="text" id="country" name="country"  value="${latestAddress.country}"><br>
 
-        <input type="submit" value="Update Address">
-    </form>
+
+		<table class="button-table">
+
+	        <tr>
+    	        <td style="border: none;">
+        	        <input type="submit" value="Update Address">
+            	</td>
+    	        <td style="width: 20px;"></td>
+    	        <td style="border: none;">
+     	           <button type="button" id="removeAddressButton">Remove Address</button>
+    	        </td>
+   		   </tr>
+    	</table>
+
+	</form>
     <br><br>
     
       <script>
@@ -95,6 +108,17 @@
             document.getElementById('postalCode').value = postalCode;
             document.getElementById('country').value = country;
         });
+     	
+     	//Listener for when remove button is pressed
+        document.getElementById('removeAddressButton').addEventListener('click', function() {
+            if (confirm("Are you sure you want to delete this address?")) {
+                // Update form action
+                document.getElementById('addressForm').action = "UpdateInfoServlet?type=addressrem";
+                // Submit form
+                document.getElementById('addressForm').submit();
+            }
+        });
+        
     </script>
 
 </body>

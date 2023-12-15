@@ -128,3 +128,14 @@ form button[type="button"]:hover {
     background-color: teal;
 }
 
+table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-table {
+    border: none;
+    border-collapse: collapse;
+}
+
