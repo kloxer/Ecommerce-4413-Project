@@ -41,6 +41,7 @@
    	    *Expiry Month (ex. "05"): <input type="number" maxlength="2" name="expMonth" value="${latestPayMethod.exp_month}"><br>
     <input type="submit" value="Update Payment Method">
     </form>
+    
 	<br><br>
  
 </body>
