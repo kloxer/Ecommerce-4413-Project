@@ -230,6 +230,7 @@ public class UpdateInfoServlet extends HttpServlet {
     }
     
     private void handleAddressAdd(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        
         int userId = Integer.parseInt(request.getParameter("userId"));
 
         // Obtain details from the request parameters
