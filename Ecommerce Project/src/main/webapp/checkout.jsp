@@ -11,19 +11,21 @@
     <title>Checkout</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/formValidators.js"></script>
-
+    <link rel="stylesheet" href="./css/checkout.css">
 </head>
 <body>
     <%@ include file="./includes/header.jsp"%>
     
 
-<h1>Your Shopping Cart</h1>
 
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h1>Checkout</h1>
+<div id="checkoutContainer">
+<div id="leftSide">
+<h2 class="header">Checkout</h2>
+
 
 <!-- Display the user info -->
 <c:if test="${not empty user}">
@@ -34,10 +36,15 @@
 </c:if>
 
 <!-- Display the payment method info or input boxes to enter card information -->
-<c:choose>
-    <c:when test="${not empty latestPayMethod and latestPayMethod.cardNumber != ''}">
-        <!-- <p id='cardNumber'>Card Number: ${latestPayMethod.cardNumber}</p> -->
+
+
         <!-- Display other payment method info... -->
+        <c:choose>
+            <c:when test="${empty latestPayMethod or empty addrList or latestPayMethod.cardNumber== '' or addrList[0].addressLine1 == ''}">
+                <p>Either payment method or address is not on file. </p>
+                <p>Please go to <a href="account">Account</a> and add the information required.</p>            
+            </c:when>
+            <c:otherwise>
 
         <label for="cards">Choose a card:</label>
         <select id="paymentOption" onchange="displayCardForm()">
@@ -125,7 +132,62 @@
 
   
 
-        <script>
+      
+   
+</div>
+
+<div id="rightSide">
+
+    <%
+    // Get the cart from the session
+    Cart cart = (Cart) session.getAttribute("cart");
+    %>
+<!-- Display the shopping cart items -->
+<h2 class="header">Your Shopping Cart</h2>
+
+<table>
+    <tr>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+
+
+    <% for (Map.Entry<ProductDisplay, Integer> entry : cart.getItems().entrySet()) { %>
+        <tr>
+            <td><%= entry.getKey().getProdID() %></td>
+            <td><%= entry.getKey().getpName() %></td>
+            <td><%= entry.getKey().getPrice() %></td>
+            <td><%= entry.getValue() %></td>
+                <!-- //servlet updateQuantity Should be easy to implement, get cart, update quantity, return
+                //and the same for deleteItem -->
+
+        
+        </tr>
+    <% } %>
+
+</table>
+
+
+
+
+</div>
+
+<form id="orderForm" action="checkoutServlet" method="post">
+    <!-- Hidden inputs for the payment and address information -->
+    <input type="hidden" name="paymentInfo" value="${paymentInfo}" />
+    <input type="hidden" name="addressInfo" value="${addressInfo}" />
+
+    <button id="checkoutButton" type="submit">Submit Order</button>
+</form>
+
+
+</div>
+</c:otherwise>
+</c:choose>
+
+  <script>
                 // Get the select element and the form
             var selectElement = document.getElementById('addresses');
             var formElement = document.getElementById('cardAddressForm');
@@ -175,6 +237,9 @@
                 }
                 
             }
+
+
+
             // Function to submit the address via AJAX
             function submitAddress(event) {
                 event.preventDefault();  // Prevent the default form submission
@@ -209,6 +274,8 @@
                 
             }
 
+
+
             function displayCardForm() {
                 var paymentOption = document.getElementById("paymentOption").value;
                 if (paymentOption == "newCard") {
@@ -220,21 +287,6 @@
 
 
         </script>
-    </c:when>
-    <c:otherwise>
-        <form action="yourActionURL" method="post">
-            <label for="cardNumber">Card Number:</label><br>
-            <input type="text" id="cardNumber" name="cardNumber"><br>
-            <label for="expiryDate">Expiry Date:</label><br>
-            <input type="text" id="expiryDate" name="expiryDate"><br>
-            <label for="cvv">CVV:</label><br>
-            <input type="text" id="cvv" name="cvv"><br>
-            <input type="submit" value="Submit">
-        </form>
-    </c:otherwise>
-</c:choose>
-
-
 
 
 </body>

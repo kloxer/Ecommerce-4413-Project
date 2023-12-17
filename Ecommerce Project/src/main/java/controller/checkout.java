@@ -56,9 +56,6 @@ public class checkout extends HttpServlet {
 			List<Address> addrList = addressDAO.getUserAddresses(userId);
 			session.setAttribute("addrList", addrList);
 
-
-
-
             //send info to checkout.jsp
             request.getRequestDispatcher("checkout.jsp").forward(request, response);
 
