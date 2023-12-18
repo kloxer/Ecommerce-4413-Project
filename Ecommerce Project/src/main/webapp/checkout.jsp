@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./css/checkout.css">
 </head>
 <body>
-    <%@ include file="./includes/header.jsp"%>
+   <%--  <%@ include file="./includes/header.jsp"%>--%>
     
 
 

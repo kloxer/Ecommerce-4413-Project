@@ -30,7 +30,7 @@
                         <h1 class="title has-text-centered">Shelfless Shop</h1>                                    	
                        		<h2 class="title has-text-centered">Sign In</h2>
 <!-- ======= -->
-	<!--  <%@ include file="./includes/header.jsp"%><br><br> -->
+	<%--  <%@ include file="./includes/header.jsp"%><br><br> -->--%> 
 	<form action="loginServlet" method="post" onsubmit="return validateLogin()">
 <!--  		<c:if test="${not empty error}">
 			<p style="color: red;">${error}</p>
