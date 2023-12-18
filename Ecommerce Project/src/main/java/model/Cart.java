@@ -52,5 +52,11 @@ public class Cart {
         }
     }
 
+    public int getCurrentQuantity(ProductDisplay product) {
+        return items.getOrDefault(product, 0);
+    }
 
+    public void clearCart() {
+        items.clear();
+    }
 }

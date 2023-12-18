@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.AddressDAO;
 import dao.AddressDAOImpl;
+import dao.orderDAO;
+import dao.orderDAOImpl;
 import model.Address;
 import model.Cart;
 import model.User;
@@ -36,7 +38,6 @@ public class checkoutServlet extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart"); //get cart from session, assume already in session
 
         User user = (User) session.getAttribute("user");
-
         String paymentInfo = request.getParameter("paymentInfo");
         int addressInfo = Integer.parseInt(request.getParameter("addressInfo")); // Parse the string value to an integer
         int userId = user.getUserId();
@@ -50,16 +51,27 @@ public class checkoutServlet extends HttpServlet {
             e.printStackTrace();
         }
         Address address = addressDAO.getAddressBasedOnID(addressInfo);
-        String currAddr = address.getAddressLine1();
+        int currAddr = address.getId();
 
         System.out.println("Payment Info: " + paymentInfo);
         System.out.println("AddressID Info: " + addressInfo);
         System.out.println("UserID Info: " + addressInfo);
         System.out.println("street line Info: " + currAddr);
 
+        orderDAOImpl orderDAO;
+
+        try {
+             orderDAO = new orderDAO();
+             orderDAO.addOrderToDatabase(cart, userId, currAddr);
+             System.out.println("Order added to database");
+             cart.clearCart();
+                System.out.println("Cart cleared");
+
+        } catch (NamingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
-        
-    
 
 
 
