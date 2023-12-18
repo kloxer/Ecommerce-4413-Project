@@ -29,7 +29,7 @@
                     <div class="box has-background-white-ter">
                         <h1 class="title has-text-centered">Register</h1>
 <!-- ======= -->
-	<!-- <%@ include file="./includes/header.jsp"%><br> -->
+	<%-- -- <%@ include file="./includes/header.jsp"%><br> -->--%>
 	<br>
 	<!--  <form >
 		<c:if test="${not empty error}">
