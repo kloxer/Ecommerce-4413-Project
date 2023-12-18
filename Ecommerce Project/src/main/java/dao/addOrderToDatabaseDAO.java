@@ -8,6 +8,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import model.Cart;
+
 public class addOrderToDatabaseDAO implements addOrderToDatabaseDAOImpl {
         private DataSource dSource;
 
@@ -18,6 +20,12 @@ public class addOrderToDatabaseDAO implements addOrderToDatabaseDAOImpl {
  
     private Connection getConnection() throws SQLException {
         return dSource.getConnection();
+    }
+
+    @Override
+    public void addOrderToDatabase(Cart cart) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addOrderToDatabase'");
     }
 
     

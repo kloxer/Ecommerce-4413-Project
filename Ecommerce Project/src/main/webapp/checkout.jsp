@@ -179,7 +179,7 @@
     <input type="hidden" name="paymentInfo" value="${paymentInfo}" />
     <input type="hidden" name="addressInfo" value="${addressInfo}" />
 
-    <button id="checkoutButton" type="submit">Submit Order</button>
+    <button id="checkoutButton" type="submit" onclick="submitOrder(event)">Submit Order</button>
 </form>
 
 
@@ -203,6 +203,28 @@
                         formElement.style.display = 'none';
                     }
                 });
+                //Submit order to servlet
+                function submitOrder(event) {
+                    event.preventDefault();  // Prevent the default form submission
+                    
+                        var formData = $('#orderForm').serialize();  // Serialize the form data
+    
+                        $.ajax({
+                            type: 'POST',
+                            url: 'checkoutServlet',
+                            data: formData,
+                            success: function(response) {
+                                // Update a part of the checkout.jsp page with the response
+                                $('#paymentUpdateMessage').text(response);
+                                
+                                window.location.href = 'showorder.jsp';
+
+    
+                            }
+                        });
+                    }
+                    
+                
 
             // Function to submit the form via AJAX
             function submitForm(event) {
