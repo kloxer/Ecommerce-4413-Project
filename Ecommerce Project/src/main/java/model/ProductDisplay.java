@@ -1,6 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
 public class ProductDisplay  implements Serializable{
@@ -94,6 +97,36 @@ public boolean equals(Object obj) {
 public int hashCode() {
     return Objects.hash(prodID);
 }
-	
+
+//Sorters based on price and name (ascend and descend)
+public static void sortByPriceAscending(List<ProductDisplay> products) {
+	products.sort(Comparator.comparingDouble(ProductDisplay::getPrice));
+}
+
+public static void sortByPriceDescending(List<ProductDisplay> products) {
+	products.sort((p1, p2) -> Double.compare(p2.getPrice(), p1.getPrice()));
+}
+
+public static void sortByNameAscending(List<ProductDisplay> products) {
+	products.sort(Comparator.comparing(ProductDisplay::getpName));
+}
+
+public static void sortByNameDescending(List<ProductDisplay> products) {
+	products.sort((p1, p2) -> p2.getpName().compareToIgnoreCase(p1.getpName()));
+}
+
+//Filters List leaving only products where name contains String
+public static List<ProductDisplay> filterByNameContains(List<ProductDisplay> products, String String) {
+    List<ProductDisplay> filteredList = new ArrayList<>();
+
+    for (ProductDisplay product : products) {
+        if (product.getpName().toLowerCase().contains(String.toLowerCase())) {
+            filteredList.add(product);
+        }
+    }
+
+    return filteredList;
+}
+
 
 }
