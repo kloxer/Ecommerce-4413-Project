@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/ecomDB" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               username="avnadmin" password="AVNS_4En2QrrZ4DU5tpub8TB"
+               driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://ecomproj-ecomfin.a.aivencloud.com:18620/defaultdb"/>
+</Context>

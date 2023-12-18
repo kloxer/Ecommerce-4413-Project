@@ -21,6 +21,7 @@
 
 <body>
 
+<!-- <<<<<<< HEAD  -->
     <section class="section">
         <div class="container">
             <div class="columns is-centered">
@@ -28,14 +29,18 @@
                     <div class="box has-background-white-ter">
                         <h1 class="title has-text-centered">Shelfless Shop</h1>                                    	
                        		<h2 class="title has-text-centered">Sign In</h2>
-
-                        <!-- Sign In Form -->
-                        <form>
-                            <!-- Username or Email Input -->
+<!-- ======= -->
+	<!--  <%@ include file="./includes/header.jsp"%><br><br> -->
+	<form action="loginServlet" method="post" onsubmit="return validateLogin()">
+<!--  		<c:if test="${not empty error}">
+			<p style="color: red;">${error}</p>
+		</c:if>-->
+			    <!-- Sign In Form -->
+			                 <!-- Username or Email Input -->
                             <div class="field">
-                                <label class="label">Username or Email</label>
+                                <label class="label">Email</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter your username or email">
+                                    <input class="input" id=username name="username" type="email" placeholder="Enter your email">
                                 </div>
                             </div>
 
@@ -43,14 +48,14 @@
                             <div class="field">
                                 <label class="label">Password</label>
                                 <div class="control">
-                                    <input class="input" type="password" placeholder="Enter your password">
+                                    <input class="input" id=password name="password" type="password" placeholder="Enter your password">
                                 </div>
                             </div>
 
                             <!-- Sign In Button -->
                             <div class="field">
                                 <div class="control">
-                                    <button class="button is-color is-fullwidth">Sign In</button>
+                                    <button id="registerButton" class="button is-color is-fullwidth">Sign In</button>
                                 </div>
                             </div>
                             <!-- Register Button -->
@@ -59,8 +64,10 @@
                                     <button class="button is-color is-fullwidth">New Customer? Sign up!</button>
                                 </div>
                             </div>
-                        </form>
-                        <!-- End Sign In Form -->
+                                                    <!-- End Sign In Form -->
+
+	</form>
+<!-- >>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project -->
 
                         <p class="has-text-centered">
                             <a href="#">Forgot your password?</a>
@@ -70,6 +77,13 @@
             </div>
         </div>
     </section>
+       <!-- JavaScript to handle button click and redirect to register.jsp -->
+    <script>
+        document.getElementById("registerButton").addEventListener("click", function () {
+            // Redirect to register.jsp
+            window.location.href = "register.jsp";
+        });
+    </script>
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </body>

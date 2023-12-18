@@ -1,0 +1,91 @@
+ 
+ /* General CSS to align in center*/
+ 
+.container {
+	margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+h1{
+	text-align: center;
+}
+
+.columns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+ /* CSS when viewing product details*/
+ 
+.image-frame {
+    width: 300px;
+    height: auto;
+    border: 1px solid grey;
+    padding: 5px;
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.addcartbutton, button, form button[type="button"], form input[type="submit"] {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: darkcyan;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+ /* Put product details bottom if screen not wide*/
+@media screen and (max-width: 680px) {
+    .columns {
+        flex-direction: column;
+    }
+
+    .column {
+        margin-bottom: 1rem;
+    }
+    
+    .image-frame {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+ /* CSS specific to cart*/
+
+form input[type="text"],
+form input[type="number"] {
+    padding: 8px;
+    border: 1px solid darkgrey;
+}
+
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-summary {
+    text-align: center;
+}

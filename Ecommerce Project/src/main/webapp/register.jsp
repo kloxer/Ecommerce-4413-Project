@@ -21,20 +21,38 @@
 
 <body>
 
+<!-- <<<<<<< HEAD  -->
     <section class="section">
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-half">
                     <div class="box has-background-white-ter">
                         <h1 class="title has-text-centered">Register</h1>
+<!-- ======= -->
+	<!-- <%@ include file="./includes/header.jsp"%><br> -->
+	<br>
+	<!--  <form >
+		<c:if test="${not empty error}">
+			<p style="color: red;">${error}</p>
+		</c:if>
+		<h2>Register</h2>
+    	First name: <input type="text" name="firstname" value="${empty firstname ? '' : firstname}"><br> 
+    	Last name: <input type="text" name="lastname" value="${empty lastname ? '' : lastname}"><br> 
+    	Phone number: <input type="text" name="phone" value="${empty phone ? '' : phone}"><br> 
+    	Username: <input type="text" name="username" value="${empty username ? '' : username}"><br>
+		Password: <input type="password" name="password"><br> 
+		<input type="submit" value="Register"> <br>
+		
+	</form><br>-->
+<!-- >>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project -->
 
                         <!-- Register Form -->
-                        <form>
+                        <form action="registerServlet" method="post" onsubmit="return validateRegister()">
                             <!-- First Name Input -->
                             <div class="field">
                                 <label class="label">First Name</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter your first name">
+                                    <input class="input" type="text" id=firstname name=firstname placeholder="Enter your first name">
                                 </div>
                             </div>
 
@@ -42,15 +60,31 @@
                             <div class="field">
                                 <label class="label">Last Name</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter your last name">
+                                    <input class="input" type="text" id=lastname name=lastname placeholder="Enter your last name">
+                                </div>
+                            </div>
+                            
+                            <!-- Username Input -->
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control">
+                                    <input class="input" type="email" id=username name=username placeholder="Enter your email">
+                                </div>
+                            </div>
+                            
+                            <!-- Password Input -->
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <div class="control">
+                                    <input class="input" type="password" id=password name=password placeholder="Enter your last name">
                                 </div>
                             </div>
 
                             <!-- Shipping Address Input -->
                             <div class="field">
-                                <label class="label">Shipping Address</label>
+                                <label class="label">Billing/Shipping Address</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter your shipping address">
+                                    <input class="input" type="text" id=address name=address placeholder="Enter your billing or shipping address">
                                 </div>
                             </div>
 
@@ -58,7 +92,7 @@
                             <div class="field">
                                 <label class="label">Postal Code</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter your postal code">
+                                    <input class="input" type="text" id=postalcode name=postalcode placeholder="Enter your postal code">
                                 </div>
                             </div>
 
@@ -66,7 +100,7 @@
                             <div class="field">
                                 <label class="label">Card Number</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter your card number">
+                                    <input class="input" type="text" id=cardnum name=cardnum placeholder="Enter your card number">
                                 </div>
                             </div>
 
@@ -74,7 +108,7 @@
                             <div class="field">
                                 <label class="label">Expiry Date</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter expiry date (MM/YYYY)">
+                                    <input class="input" type="text" id=cardexp name=cardexp placeholder="Enter expiry date (MM/YYYY)">
                                 </div>
                             </div>
 
@@ -82,7 +116,7 @@
                             <div class="field">
                                 <label class="label">Security Code</label>
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Enter security code">
+                                    <input class="input" type="text" id=cardcode name=cardcode placeholder="Enter security code (Three or Four digits)">
                                 </div>
                             </div>
 

@@ -1,0 +1,23 @@
+#checkoutContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#leftSide {
+    margin-bottom: 5px; /* Adjust as needed */
+}
+
+#rightSide {
+    margin-top: 5px; /* Adjust as needed */
+}
+
+
+.header{
+    text-align: center;
+}
+
+#cardAddressForm {
+    display: none;
+}
