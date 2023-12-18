@@ -24,12 +24,14 @@ public class checkoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.getWriter().println("POST request received at CheckoutServlet");
-
+        System.out.println("POST request received at CheckoutServlet");
         HttpSession session = request.getSession();
         
         Cart cart = (Cart) session.getAttribute("cart"); //get cart from session, assume already in session
 
-        
+         // After processing the order, redirect to showorder.jsp
+            response.sendRedirect("index.jsp");
+
 
 
 
