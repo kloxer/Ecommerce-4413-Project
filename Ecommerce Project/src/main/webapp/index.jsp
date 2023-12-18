@@ -27,23 +27,28 @@
 <body>
 	<%@ include file="./includes/header.jsp"%>
     <!-- Tabs Container -->
-    <div class="tabs is-centered">
-        <ul>
-            <!-- Home Tab -->
-            <li class="is-active"><a href="#">Home</a></li>
+	<div class="tabs is-centered">
+		<ul>
+			<strong><li>Sort by:</li></strong>
 
-            <!-- Products Tab -->
-            <li><a href="#">Products</a></li>
+			<!-- Price sorting -->
+			<li><a href="#" onclick="addQueryParam('sort', 'priceasc')">Price Ascending</a></li>
+			<li><a href="#" onclick="addQueryParam('sort', 'pricedesc')">Price Descending</a></li>
 
-            <!-- About Tab -->
-            <li><a href="#">About</a></li>
+			<!-- Name sorting-->
+			<li><a href="#" onclick="addQueryParam('sort', 'nameasc')">Name Ascending</a></li>
+			<li><a href="#" onclick="addQueryParam('sort', 'namedesc')">Name Descending</a></li>
 
-            <!-- Blog Tab -->
-            <li><a href="#">Blog</a></li>
-        </ul>
-    </div>
-    
-<h1>Catalogue of Our Items</h1>
+			<strong><li>Category/Brand:</li></strong>
+			<!-- Category Filtering -->
+			<li><a href="#" onclick="addQueryParam('brand', 'Apple')">Apple</a></li>
+			<li><a href="#" onclick="addQueryParam('brand', 'Samsung')">Samsung</a></li>
+		</ul>
+
+	</div>
+	
+
+	<h1>Catalogue of Our Items</h1>
 
 <ul style="list-style-type: none; display: flex; flex-wrap: wrap; padding: 0; margin: 0;">
   <c:forEach var="item" items="${productDisplays}">
@@ -60,6 +65,15 @@
     </li>
   </c:forEach>
 </ul>
+
+<script>
+	//Script to add to query parameter for filtering
+    function addQueryParam(key, value) {
+        const url = new URL(window.location.href);
+        url.searchParams.set(key, value);
+        window.location.href = url.toString();
+    }
+</script>
 
 
 
