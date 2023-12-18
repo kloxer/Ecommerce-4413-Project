@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.ArrayList;
+import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.naming.Context;
@@ -14,7 +16,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.Cart;
+import model.Order;
 import model.ProductDisplay;
+import model.Purchase;
 
 public class orderDAO implements orderDAOImpl {
         private DataSource dSource;
@@ -37,7 +41,7 @@ public class orderDAO implements orderDAOImpl {
         //Purchase_item schema (purchase_id,item_id,quantity,price_at_purchase)
         //Purchase schema (purchase_id, user_id ,address_id,date,total,isFilled) 
 
-        //So I can do purcahse_item first, 
+        //So I can do purchase_item first, 
 
     Connection connection = null;
     PreparedStatement statement = null;
@@ -91,7 +95,7 @@ public class orderDAO implements orderDAOImpl {
         
     }
 
-    
+//Method only called upon by addOrderToDatabase
 public void addPurchaseToDatabase(int purchase_id, int user_id, int address_id, Date date, double total, boolean isFilled) {
     Connection connection = null;
     PreparedStatement statement = null;
@@ -135,6 +139,52 @@ public void addPurchaseToDatabase(int purchase_id, int user_id, int address_id, 
         return uniqueAddressID + 1;
     }
     
+public List<Order> getOrdersByUserId(int user_id) {
+    Connection connection = null;
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
+    List<Order> orders = new ArrayList<>();
+
+    try {
+        connection = getConnection();
+
+        String sql = "SELECT * FROM Purchase WHERE user_id = ?";
+        statement = connection.prepareStatement(sql);
+
+        statement.setInt(1, user_id);
+
+        resultSet = statement.executeQuery();
+
+        ArrayList<Integer> purchase_ids = new ArrayList<>();
+        while (resultSet.next()) {
+            int purchase_id = resultSet.getInt("purchase_id");
+            
+            int address_id = resultSet.getInt("address_id");
+            Date date = resultSet.getDate("date");
+            double total = resultSet.getDouble("total");
+            boolean isFilled = resultSet.getBoolean("isFilled");
+
+            Order purchase = new Order(purchase_id, user_id, address_id, date, total, isFilled);
+            orders.add(purchase);
+            purchase_ids.add(purchase_id);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // Close the resources
+        if (resultSet != null) try { resultSet.close(); } catch (SQLException e) { /* ignored */ }
+        if (statement != null) try { statement.close(); } catch (SQLException e) { /* ignored */ }
+        if (connection != null) try { connection.close(); } catch (SQLException e) { /* ignored */ }
+    }
+
+
+    // Get the items for each purchase
+
+
+    
+    return orders;
+}
+
 
 
 

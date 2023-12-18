@@ -15,6 +15,11 @@
 </head>
 <body>
     <%@ include file="./includes/header.jsp"%>
+
+    <h1>Your Order</h1>
+    <p>Your oder has been submitted, view details below</p>
+
+    
     
 
 
