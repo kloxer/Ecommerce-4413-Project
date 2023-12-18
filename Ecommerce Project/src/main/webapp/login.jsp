@@ -24,7 +24,7 @@
 <!-- <<<<<<< HEAD  -->
     <section class="section">
         <div class="container">
-            <div class="columns is-centered">
+            <div class="column is-centered">
                 <div class="column is-half">
                     <div class="box has-background-white-ter">
                         <h1 class="title has-text-centered">Shelfless Shop</h1>                                    	

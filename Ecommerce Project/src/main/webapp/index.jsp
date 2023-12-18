@@ -21,40 +21,44 @@
         .tabs ul li:hover a {
             border-bottom-color: forestgreen; /* Change to your desired color */
         }
+            h1 {
+  font-size: 20px;
+}
     </style>
 </head>
 <body>
 <!--  <<<<<<< HEAD-->
 
   <!-- Grid Container -->
-  <div class="columns is-mobile">
+  <div class="column is-full">
 
 <!-- ======= -->
 	<%@ include file="./includes/header.jsp"%>
 <!-- >>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project -->
-    <!-- Tabs Container -->
+    <!-- Tabs Container
     <div class="column is-three-fifths is-offset-one-fifth">
-        <div class="tabs is-centered"> <!-- Added is-centered class -->
-            <ul>
-                <!-- Home Tab -->
-                <li class="is-active"><a href="#">Home</a></li>
+        <div class="tabs is-centered">  -->
+        <!-- Added is-centered class 
+            <ul>-->
+                <!-- Home Tab 
+                <li class="is-active"><a href="#">Home</a></li>-->
 
-                <!-- Products Tab -->
-                <li><a href="#">Products</a></li>
+                <!-- Products Tab 
+                <li><a href="#">Products</a></li>-->
 
-                <!-- About Tab -->
-                <li><a href="#">About</a></li>
+                <!-- About Tab 
+                <li><a href="#">About</a></li>-->
 
-                <!-- Blog Tab -->
+                <!-- Blog Tab
                 <li><a href="#">Blog</a></li>
                 
                 
             </ul>
         </div>
-    </div>
+    </div>    -->
 <!-- <<<<<<< HEAD -->
 
-    <!-- Search Input Container -->
+    <!-- Search Input Container 
     <div class="column is-one-fifth ">
         <div class="tabs is-right">
             <ul>
@@ -66,7 +70,7 @@
                 <li><a href="#">Cart</a></li>
             </ul>
         </div>
-    </div>
+    </div>-->
 
   </div>
 
@@ -96,6 +100,6 @@
 
 
 
->>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project
+<!--  >>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project-->
 </body>
 </html>
