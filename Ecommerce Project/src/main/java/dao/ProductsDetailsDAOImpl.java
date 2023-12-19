@@ -114,6 +114,20 @@ public class ProductsDetailsDAOImpl implements ProductsDetailsDAO {
             statement.executeUpdate();
         }
     }
+    
+    @Override
+    public boolean updateProductQuantity(int prodId, int updatedQuantity) throws SQLException {
+        String sql = "UPDATE Product_Details SET quantity_remaining = ? WHERE prod_id = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, updatedQuantity);
+            statement.setInt(2, prodId);
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+        }
+    }
+
+
 
     private Connection getConnection() throws SQLException {
         return dSource.getConnection();

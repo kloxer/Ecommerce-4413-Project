@@ -23,5 +23,8 @@ public interface ProductsDetailsDAO {
     // Delete a product from the details
     void deleteProduct(int id) throws SQLException;
 
+    // Update Product Quantity by ID and new Quantity
+    public boolean updateProductQuantity(int prodId, int updatedQuantity) throws SQLException;
+    
 	ProductDetails getProductBySKU(int sku) throws SQLException;
 }

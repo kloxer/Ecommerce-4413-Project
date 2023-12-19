@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,10 +13,13 @@ import javax.servlet.http.HttpSession;
 
 import dao.AddressDAO;
 import dao.AddressDAOImpl;
+import dao.ProductDisplayDAO;
+import dao.ProductDisplayDAOImpl;
 import dao.UserDAOImpl;
 import dao.UserPaymentDAO;
 import dao.UserPaymentDAOImpl;
 import model.Address;
+import model.ProductDisplay;
 import model.User;
 import model.UserPaymentMethod;
 
@@ -25,6 +29,7 @@ public class AdminServlet extends HttpServlet {
     private UserDAOImpl userDAO;
 	private UserPaymentDAO userPaymentDAO;
 	private AddressDAO addressDAO;
+	private ProductDisplayDAO productDisplayDAO;
 
     public void init() throws ServletException {
         super.init();
@@ -33,6 +38,7 @@ public class AdminServlet extends HttpServlet {
             userDAO = new UserDAOImpl();
             userPaymentDAO = new UserPaymentDAOImpl();
             addressDAO = new AddressDAOImpl();
+            productDisplayDAO = new ProductDisplayDAOImpl();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,11 +50,31 @@ public class AdminServlet extends HttpServlet {
         if (session != null) {
             User user = (User) session.getAttribute("user");
 
+            // Check if User is an Admin
             if (user != null && user.isAdmin()) {
-            	
-            	// user is an Admin
-            	// check if user has an action parameter
+            
+            	// Obtain section parameter Admin wants
+            	String section = request.getParameter("section");
+            	// Obtain action parameter of Admin 
             	String action = request.getParameter("action");
+            	
+            	//Check what section Admin selected
+            	 if (section != null && section.equals("inventory")) {
+            		 List<ProductDisplay> allProducts = null;
+					
+            		 try {
+						allProducts = productDisplayDAO.getAllProducts();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+            		 
+            		 session.setAttribute("productList", allProducts);
+                     request.getRequestDispatcher("admin_inventory_maintenance.jsp").forward(request, response);
+            	 }else if(section != null && section.equals("sales")) {
+            		 //REDIRECT HERE FOR SALES HISTORY
+            		 
+            	 }
+            	
             	
             	// Action is Edit User (admin wants to edit a selected User)
                 if (action != null && action.equals("EditUser")) {
@@ -71,11 +97,13 @@ public class AdminServlet extends HttpServlet {
                     request.getRequestDispatcher("admin_edit_user.jsp").forward(request, response);
                 }
             	
-                
-                // If no action, obtain list of users for drop down list
+                // If no action or section, obtain list of users for drop down list
                 // Save the list in the session and forward
-                request.setAttribute("userList", userDAO.getAllUsers());
-                request.getRequestDispatcher("admin_account_maintenance.jsp").forward(request, response);
+                if (section == null && action == null) {
+                    request.setAttribute("userList", userDAO.getAllUsers());
+                    request.getRequestDispatcher("admin_account_maintenance.jsp").forward(request, response);
+                }
+
             } else {
                 // User is not an admin or logged out, redirect to login
                 response.sendRedirect("login.jsp");

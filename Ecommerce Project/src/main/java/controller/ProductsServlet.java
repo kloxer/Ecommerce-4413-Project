@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 public class ProductsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private List<ProductDisplay> productDisplays;
-
+    
     public ProductsServlet() {
         super();
     }
@@ -38,6 +38,9 @@ public class ProductsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+
+    	init();
     	
     	//Initalize session
     	HttpSession session = request.getSession();
