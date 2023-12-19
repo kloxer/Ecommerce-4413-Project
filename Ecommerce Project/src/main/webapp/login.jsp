@@ -24,18 +24,13 @@
 <!-- <<<<<<< HEAD  -->
     <section class="section">
         <div class="container">
-            <div class="column is-centered">
+            <div class="columns is-centered">
                 <div class="column is-half">
-                    <div class="box has-background-white-ter">
-                        <h1 class="title has-text-centered">Shelfless Shop</h1>                                    	
+                    <div class="box">
+                        <h1 class="title has-text-centered">Shelfless Shop</h1>                                  	
                        		<h2 class="title has-text-centered">Sign In</h2>
-<!-- ======= -->
-	<%--  <%@ include file="./includes/header.jsp"%><br><br> -->--%> 
-	<form action="loginServlet" method="post" onsubmit="return validateLogin()">
-<!--  		<c:if test="${not empty error}">
-			<p style="color: red;">${error}</p>
-		</c:if>-->
-			    <!-- Sign In Form -->
+                       		<form action="loginServlet" method="post" onsubmit="return validateLogin()">
+                       		<!-- Sign In Form -->
 			                 <!-- Username or Email Input -->
                             <div class="field">
                                 <label class="label">Email</label>
@@ -65,11 +60,8 @@
                                 </div>
                             </div>
                                                     <!-- End Sign In Form -->
-
-	</form>
-<!-- >>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project -->
-
-                        <p class="has-text-centered">
+                           </form>
+                                                   <p class="has-text-centered">
                             <a href="#">Forgot your password?</a>
                         </p>
                     </div>
@@ -77,6 +69,18 @@
             </div>
         </div>
     </section>
+<!-- ======= -->
+	<%--  <%@ include file="./includes/header.jsp"%><br><br> -->--%> 
+	
+<!--  		<c:if test="${not empty error}">
+			<p style="color: red;">${error}</p>
+		</c:if>-->
+
+
+	
+<!-- >>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project -->
+
+
        <!-- JavaScript to handle button click and redirect to register.jsp -->
     <script>
         document.getElementById("registerButton").addEventListener("click", function () {
