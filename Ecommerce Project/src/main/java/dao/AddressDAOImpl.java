@@ -273,5 +273,35 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
 
+    //  Method to get the address based on Address_ID
+    public Address getAddressBasedOnID(int addressId) {
+        Connection connection = null;
+        Address latestAddress = new Address();
 
+        try {
+            connection = getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(
+                "SELECT * FROM Address WHERE ID = ? LIMIT 1");
+            statement.setInt(1, addressId);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                latestAddress.setId(resultSet.getInt("id"));
+                latestAddress.setUnitNumber(resultSet.getString("Unit_number"));
+                latestAddress.setAddressLine1(resultSet.getString("address_line1"));
+                latestAddress.setCity(resultSet.getString("city"));
+                latestAddress.setRegion(resultSet.getString("region"));
+                latestAddress.setPostalCode(resultSet.getString("postal_code"));
+                latestAddress.setCountry(resultSet.getString("country"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+
+        return latestAddress;
+    }
 }

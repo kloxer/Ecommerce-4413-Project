@@ -19,4 +19,6 @@ public interface AddressDAO {
 	
 	boolean removeAddressByID(int userID, int addressID);
 
+    Address getAddressBasedOnID(int addressId);
+
 }

@@ -18,37 +18,56 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/products")
 public class ProductsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private List<ProductDisplay> productDisplays;
 
     public ProductsServlet() {
         super();
     }
+    
+    public void init() throws ServletException {
+        super.init();
+        ProductDisplayDAO productDisplayDAO;
+        try {
+        	// Create an instance of your ProductDisplayDAO to retrieve data
+            productDisplayDAO = new ProductDisplayDAOImpl();
+            productDisplays = productDisplayDAO.getAllProducts();
+        } catch (NamingException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Create an instance of your ProductDisplayDAO to retrieve data
-        ProductDisplayDAO productDisplayDAO;
-
-        // ...
-
-        try {
-            productDisplayDAO = new ProductDisplayDAOImpl();
-            List<ProductDisplay> productDisplays = productDisplayDAO.getAllProducts();
-            
-            HttpSession session = request.getSession(); // Initialize the session object
+    	
+    	//Initalize session
+    	HttpSession session = request.getSession();
+    	String sortType = request.getParameter("sort");
+    	String brand = request.getParameter("brand");
+    	
+    	//Sort by Name and Price
+        if (sortType != null && !sortType.isEmpty()) {
+            if (sortType.equals("priceasc")) {
+                ProductDisplay.sortByPriceAscending(productDisplays);
+            } else if (sortType.equals("pricedesc")) {
+                ProductDisplay.sortByPriceDescending(productDisplays);
+            } else if (sortType.equals("nameasc")) {
+                ProductDisplay.sortByNameAscending(productDisplays);
+            } else if (sortType.equals("namedesc")) {
+                ProductDisplay.sortByNameDescending(productDisplays);
+            }
+        }
+        
+        //Filter by Phone Brand or Category
+        if (brand != null && !brand.isEmpty()) {
+            List<ProductDisplay> filteredList = ProductDisplay.filterByNameContains(productDisplays, brand);
+            session.setAttribute("productDisplays", filteredList);
+        } else {
             session.setAttribute("productDisplays", productDisplays);
-
-            //giving to index.jsp for now
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-
-        } catch (NamingException | SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
-
- 
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
-
-        }
+    	
+    	//Forward to index	
+    	request.getRequestDispatcher("/index.jsp").forward(request, response);
+     }
     
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
