@@ -146,7 +146,7 @@ th {
             <c:otherwise>
 
         <label for="cards">Choose a card:</label>
-        <select id="paymentOption" onchange="displayCardForm()">
+        <select id="paymentOption" name ='cardNum' onchange="displayCardForm()">
             <option id ="currentCard" value="${latestPayMethod.cardNumber}">${latestPayMethod.cardNumber}</option>
             <option value="newCard">Enter new card</option>
         </select>
@@ -274,9 +274,6 @@ th {
 </div>
 
 <form id="orderForm" action="checkoutServlet" method="post">
-    <!-- Hidden inputs for the payment and address information -->
-    <input type="hidden" name="paymentInfo" value="${paymentInfo}" />
-    <input type="hidden" name="addressInfo" value="${addressInfo}" />
 
     <button id="checkoutButton" type="submit" onclick="submitOrder(event)">Submit Order</button>
 </form>
@@ -287,6 +284,44 @@ th {
 </c:choose>
 
   <script>
+
+    // Function to submit the form normally for order
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+
+        // Get the selected card and address
+        var card = document.querySelector('select[name="cardNum"]').value;
+        var address = document.querySelector('select[name="addressId"]').value;
+    
+        // Create hidden input fields for the card and address
+        var cardInput = document.createElement('input');
+        cardInput.type = 'hidden';
+        cardInput.name = 'paymentInfo';
+        cardInput.value = card;
+    
+        var addressInput = document.createElement('input');
+        addressInput.type = 'hidden';
+        addressInput.name = 'addressInfo';
+        addressInput.value = address;
+    
+        // Append the hidden input fields to the form
+        this.appendChild(cardInput);
+        this.appendChild(addressInput);
+
+        // Submit the form programmatically
+        this.submit();
+    });
+
+
+
+
+
+
+
+
+
+
+
                 // Get the select element and the form
             var selectElement = document.getElementById('addresses');
             var formElement = document.getElementById('cardAddressForm');
@@ -302,26 +337,6 @@ th {
                         formElement.style.display = 'none';
                     }
                 });
-                //Submit order to servlet
-                function submitOrder(event) {
-                    event.preventDefault();  // Prevent the default form submission
-                    
-                        var formData = $('#orderForm').serialize();  // Serialize the form data
-    
-                        $.ajax({
-                            type: 'POST',
-                            url: 'checkoutServlet',
-                            data: formData,
-                            success: function(response) {
-                                // Update a part of the checkout.jsp page with the response
-                                $('#paymentUpdateMessage').text(response);
-                                
-                                window.location.href = 'showorder.jsp';
-
-    
-                            }
-                        });
-                    }
                     
                 
 

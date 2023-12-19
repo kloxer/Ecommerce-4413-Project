@@ -74,12 +74,9 @@ public class checkoutServlet extends HttpServlet {
         
 
 
-        
+
          // After processing the order, redirect to showorder.jsp
         response.sendRedirect("showorder.jsp");
-
-
-
 
 
 
