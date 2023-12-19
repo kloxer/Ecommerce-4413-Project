@@ -213,3 +213,23 @@ function validateAddress() {
 
     return true;
 }
+
+
+function validateInventoryUpdate() {
+    var quantityRemaining = document.getElementById('quantityRemaining').value.trim();
+	
+	//	Check if Product Selected and QTY not empty
+	if (quantityRemaining === ''){
+		alert('Please ensure a product is selected and quantity remaining is not empty.');
+        return false;
+	}
+
+    // Check if quantityRemaining is a whole number
+    if (!Number.isInteger(Number(quantityRemaining)) || Number(quantityRemaining) < 0) {
+        alert('Please enter a valid whole number for Quantity Remaining.');
+        return false;
+    }
+
+	//Passed validation
+    return true;
+}
