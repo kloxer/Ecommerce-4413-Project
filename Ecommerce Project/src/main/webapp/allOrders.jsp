@@ -53,6 +53,10 @@
         </ul>
     </div>
 
+	    <c:if test="${empty allPurchases}">
+            <h2 style="text-align: center;">You have no orders yet!</h2>
+        </c:if>
+
     <!-- Show all orders for current user-->
     <div class="container">
         <c:forEach var="purchase" items="${allPurchases}">
