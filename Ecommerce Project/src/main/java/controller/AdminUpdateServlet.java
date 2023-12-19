@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.AddressDAO;
 import dao.AddressDAOImpl;
+import dao.ProductsDetailsDAO;
+import dao.ProductsDetailsDAOImpl;
 import dao.UserDAO;
 import dao.UserDAOImpl;
 import dao.UserPaymentDAO;
@@ -26,6 +29,7 @@ public class AdminUpdateServlet extends HttpServlet {
     private UserPaymentDAO userPaymentDAO;
     private AddressDAO addressDAO;
     private UserDAO userDAO;
+    private ProductsDetailsDAO productDetailsDAO;
 
     public AdminUpdateServlet() {
         super();
@@ -37,6 +41,7 @@ public class AdminUpdateServlet extends HttpServlet {
             userPaymentDAO = new UserPaymentDAOImpl();
             addressDAO = new AddressDAOImpl();
             userDAO = new UserDAOImpl();
+            productDetailsDAO = new ProductsDetailsDAOImpl();
         } catch (NamingException e) {
             e.printStackTrace();
         }
@@ -55,6 +60,8 @@ public class AdminUpdateServlet extends HttpServlet {
             handleAddressAdd(request, response);
         } else if ("addressrem".equals(type)) {
             handleAddressRem(request, response);
+        }else if ("productqty".equals(type)) {
+        	handleProductQuantityUpdate(request, response);
         }
     }
 
@@ -207,6 +214,28 @@ public class AdminUpdateServlet extends HttpServlet {
             // If removal fails, notify
             request.setAttribute("msg", "Failed to remove address. At least one address is required. Consider adding or updating.");
             request.getRequestDispatcher("./admin?action=EditUser&selectedUser=" + userId).forward(request, response);
+        }
+    }
+    
+    //Method to update the quantity remaining of a product
+    private void handleProductQuantityUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int productId = Integer.parseInt(request.getParameter("prodId"));
+        int updatedQuantity = Integer.parseInt(request.getParameter("quantityRemaining"));
+        String productName = request.getParameter("productName");
+
+        try {
+            boolean success = productDetailsDAO.updateProductQuantity(productId, updatedQuantity);
+
+            if (success) {
+                request.setAttribute("msg", "Product: " + productName + " quantity updated successfully! Check list to verify.");
+            } else {
+                request.setAttribute("msg", "Failed to update product quantity.");
+            }
+
+            // Redirect back to Admin inventory section
+            request.getRequestDispatcher("./admin?section=inventory").forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
