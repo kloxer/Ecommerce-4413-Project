@@ -17,7 +17,9 @@ import dao.UserDAO;
 import dao.UserDAOImpl;
 import dao.UserPaymentDAO;
 import dao.UserPaymentDAOImpl;
+import dao.orderDAO;
 import model.Address;
+import model.Purchase;
 import model.User;
 import model.UserPaymentMethod;
 
@@ -91,7 +93,20 @@ public class AccountServlet extends HttpServlet {
 							//Redirect to add new Address for account
 							request.getRequestDispatcher("account_add_address.jsp").forward(request, response);
 						}
-						
+						else if (section.equals("orders")){
+							//Redirect to add new Address for account
+								orderDAO orderDAO;
+								try {
+									orderDAO = new orderDAO();
+									List<Purchase> allPurchases = orderDAO.getAllPurchasesByUserId(userId);
+									session.setAttribute("allPurchases", allPurchases);
+
+								} catch (NamingException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+        }
+							request.getRequestDispatcher("allOrders.jsp").forward(request, response);
+						}
 				}
 				
 			} else {

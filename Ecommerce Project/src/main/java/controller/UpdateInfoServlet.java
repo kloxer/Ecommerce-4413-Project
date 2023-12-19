@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -11,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.*;
-import model.Address;
-import model.User;
-import model.UserPaymentMethod;
+import model.*;
 
 /**
  * Servlet implementation class updateInfoServlet
@@ -68,10 +67,11 @@ public class UpdateInfoServlet extends HttpServlet {
         }else if ("addressrem".equals(type)) {
             handleAddressRem(request, response);
         }
-       
+   
 	}
 
-	/**
+
+    /**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -79,6 +79,9 @@ public class UpdateInfoServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
+
+
+
 	private void handleNewAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		int addId = Integer.parseInt(request.getParameter("AddId"));
 		 
