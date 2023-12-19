@@ -188,6 +188,35 @@ public List<Order> getOrdersByUserId(int user_id) {
     return orders;
 }
 
+public List<Purchase> getAllPurchasesByAllUsers() {
+         String GET_PURCHASES_QUERY = "SELECT * FROM Purchase";
+
+        List<Purchase> purchases = new ArrayList<>();
+        try (Connection conn = dSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(GET_PURCHASES_QUERY)) {
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Purchase purchase = new Purchase();
+                purchase.setPurchaseId(rs.getInt("purchase_id"));
+                purchase.setUserId(rs.getInt("user_id"));
+                purchase.setAddressId(rs.getInt("address_id"));
+                purchase.setDate(rs.getDate("date"));
+                purchase.setTotal(rs.getDouble("total"));
+                purchase.setFilled(rs.getBoolean("isFilled"));
+                purchase.setItems(getItemsForPurchase(rs.getInt("purchase_id"), conn));
+
+                purchases.add(purchase);
+
+                //System.out.println("Purchase ID: " + purchase.getPurchaseId() + " User ID: " + purchase.getUserId() + " Address ID: " + purchase.getAddressId() + " Date: " + purchase.getDate() + " Total: " + purchase.getTotal() + " isFilled: " + purchase.isFilled()  + " Items: " + purchase.getItems());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }
+        return purchases;
+    }
 
     public List<Purchase> getAllPurchasesByUserId(int userId) {
          String GET_PURCHASES_QUERY = "SELECT * FROM Purchase WHERE user_id = ?";
@@ -245,7 +274,7 @@ public List<Order> getOrdersByUserId(int user_id) {
         return items;
     }
 
-    
+
 
 
 
