@@ -94,7 +94,7 @@
 
   </div>
 
-  <h1>Catalogue of Our Items</h1>
+  <h1>Catalogue of Our Phones</h1>
   <ul>
     <c:forEach var="item" items="${items}">
       <li>${item.name} - $ ${item.price}</li>
