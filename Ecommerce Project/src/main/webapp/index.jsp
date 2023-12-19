@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--   <link rel="stylesheet" href="../css/header.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <title>Display Items--Jon Doe</title>
+  <title>Display Items</title>
       <style>
         /* Customize the active tab color */
         .tabs ul li.is-active a {
@@ -67,7 +67,7 @@
 </ul>
 
 <script>
-	//Script to add to query parameter for filtering
+	//Script to change query parameters for filtering
     function addQueryParam(key, value) {
         const url = new URL(window.location.href);
         url.searchParams.set(key, value);
