@@ -31,11 +31,21 @@
             <% 
         Object userObject = session.getAttribute("user");
         if (userObject != null) {
-            // For when user is logged in
+        	
+        	//Cast the object as User
+        	User user = (User) session.getAttribute("user");
+        	
+        	if(user.isAdmin()){
+        		//Add option of Admin for when Admin is logged in
+        		out.println("<a href=\"./admin\">Admin</a>");
+        	}
+            
+        	// Add options for when general user is logged in
             out.println("<a href=\"./account\">Account</a>");
             out.println("<a href=\"./logoutServlet\">Log Out</a>");
         } else {
-            // For when user is logged out
+        	
+            // Options for when user is logged out
             out.println("<a href=\"./login.jsp\">Login</a>");
             out.println("<a href=\"./register.jsp\">Register</a>");
         }

@@ -66,11 +66,19 @@
                                 </div>
                             </div>
                             
+                            <!-- Phone Input -->
+                            <div class="field">
+                                <label class="label">Phone Number</label>
+                                <div class="control">
+                                    <input class="input" type="text" id=phone name=phone placeholder="Enter your phone number">
+                                </div>
+                            </div>
+                            
                             <!-- Username Input -->
                             <div class="field">
-                                <label class="label">Email</label>
+                                <label class="label">Username</label>
                                 <div class="control">
-                                    <input class="input" type="email" id=username name=username placeholder="Enter your email">
+                                    <input class="input" type="text" id=username name=username placeholder="Enter your username">
                                 </div>
                             </div>
                             

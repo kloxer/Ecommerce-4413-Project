@@ -20,6 +20,7 @@
     
     <div class="user-dropdown">
         <form action="admin?action=EditUser" method="post">
+        <h2>Select a User to Edit for Maintenance</h2>
             <select name="selectedUser">
                 <c:forEach var="user" items="${userList}">
                     <option value="${user.userId}">${user.firstName} ${user.lastName}</option>
