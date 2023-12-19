@@ -14,3 +14,6 @@ In account tab at the top, you can view more info, such as editing addresses and
 Docker WAR Deployment:
 https://hub.docker.com/r/davzakyu/ecomproj
 
+ADMIN LOGIN FOR WEBSITE:
+Username: John20
+Password: yamaha20
