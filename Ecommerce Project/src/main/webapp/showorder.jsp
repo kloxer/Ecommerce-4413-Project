@@ -21,6 +21,18 @@
             background: #f9f9f9; /* Light grey background */
             color: #333; /* Dark grey text for better readability */
             line-height: 1.6; /* More space between lines */
+            
+        }
+        #everything {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         
         .header {
@@ -40,7 +52,7 @@
         }
         
         table {
-            width: 100%; /* Full-width table */
+            width: 60%; /* Full-width table */
             margin: 20px 0; /* Margin above and below the table */
             border-collapse: collapse; /* Collapse borders */
         }
@@ -67,10 +79,13 @@
         
     </style>
 </head>
+
 <body>
     <%@ include file="./includes/header.jsp"%>
 
-    <h1>Your Order</h1>
+<div id="everything">
+    <div id ='info'>
+    <h1 style="text-align: center;">Your Order</h1>
     <p>Your oder has been submitted, view details below</p>
 
     <c:if test="${not empty user}">
@@ -90,6 +105,7 @@
     Cart cart = (Cart) session.getAttribute("cart");
     %>
 <!-- Display the shopping cart items -->
+</div>
 <h2 class="header">Items purchased: </h2>
 
 <table>
@@ -120,6 +136,6 @@
     <%
 cart.clearCart();
 %>
-
+</div>
 </body>
 </html>
