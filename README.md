@@ -14,8 +14,3 @@ In account tab at the top, you can view more info, such as editing addresses and
 Docker WAR Deployment:
 https://hub.docker.com/r/davzakyu/ecomproj
 
-TEAM MEMBERS:
-David Zakharian #217117037
-Dominique Willis-Njuki #218157131
-Dave Baku #216521536
-Jonathan Ramos#218537530
