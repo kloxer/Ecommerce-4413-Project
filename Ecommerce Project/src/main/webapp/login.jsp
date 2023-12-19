@@ -32,6 +32,11 @@
                     <div class="box">
                         <h1 class="title has-text-centered">Shelfless Shop</h1>                                  	
                        		<h2 class="title has-text-centered">Sign In</h2>
+
+                       		<c:if test="${not empty error}">
+					<p style="color: red;">${error}</p>
+				</c:if>
+
                        		<form action="loginServlet" method="post" onsubmit="return validateLogin()">
                        		<!-- Sign In Form -->
 			                 <!-- Username or Email Input -->
