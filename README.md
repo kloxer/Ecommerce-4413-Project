@@ -11,6 +11,9 @@ Add all additional required info
 Then you can pick a phone, add to cart, go back and add more phones or submit order
 In account tab at the top, you can view more info, such as editing addresses and viewing orders
 
+Docker WAR Deployment:
+https://hub.docker.com/r/davzakyu/ecomproj
+
 TEAM MEMBERS:
 David Zakharian #217117037
 Dominique Willis-Njuki #218157131
