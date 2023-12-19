@@ -1,5 +1,6 @@
 package controller;
 import java.io.IOException;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import dao.orderDAO;
 import dao.orderDAOImpl;
 import model.Address;
 import model.Cart;
+import model.Purchase;
 import model.User;
 
 
@@ -31,7 +33,6 @@ public class checkoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().println("POST request received at CheckoutServlet");
         System.out.println("POST request received at CheckoutServlet");
         HttpSession session = request.getSession();
         
@@ -58,12 +59,18 @@ public class checkoutServlet extends HttpServlet {
         System.out.println("UserID Info: " + addressInfo);
         System.out.println("street line Info: " + currAddr);
 
-        orderDAOImpl orderDAO;
-
+        orderDAO orderDAO;
+        List<Purchase> allPurchases;
         try {
              orderDAO = new orderDAO();
              orderDAO.addOrderToDatabase(cart, userId, currAddr);
              System.out.println("Order added to database");
+
+            allPurchases = orderDAO.getAllPurchasesByUserId(userId);
+
+
+            session.setAttribute("allPurchases", allPurchases);
+            
              cart.clearCart();
                 System.out.println("Cart cleared");
 
@@ -72,6 +79,9 @@ public class checkoutServlet extends HttpServlet {
             e.printStackTrace();
         }
         
+
+        //Set purchases to session
+  
 
 
 

@@ -210,6 +210,8 @@ public List<Order> getOrdersByUserId(int user_id) {
                 purchase.setItems(getItemsForPurchase(rs.getInt("purchase_id"), conn));
 
                 purchases.add(purchase);
+
+                //System.out.println("Purchase ID: " + purchase.getPurchaseId() + " User ID: " + purchase.getUserId() + " Address ID: " + purchase.getAddressId() + " Date: " + purchase.getDate() + " Total: " + purchase.getTotal() + " isFilled: " + purchase.isFilled()  + " Items: " + purchase.getItems());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -234,6 +236,7 @@ public List<Order> getOrdersByUserId(int user_id) {
                 item.setPrice(rs.getDouble("price_at_purchase"));
 
                 items.add(item);
+                //System.out.println("Item ID: " + item.getItemID() + " Quantity: " + item.getQuantity() + " Price: " + item.getPrice());
             }
         } catch (SQLException e) {
             e.printStackTrace();

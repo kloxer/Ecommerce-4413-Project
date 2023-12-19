@@ -25,7 +25,7 @@ public class Item implements Serializable {
 	public void setPurchaseId(int purchaseId) {
 		this.purchaseId = purchaseId;
 	}
-	
+
     public Item() {
     }
 
@@ -89,13 +89,16 @@ public class Item implements Serializable {
         Collections.sort(items, Comparator.comparingDouble(Item::getPrice));
     }
 
-    public static void sortByPriceDecreasing(List<Item> items) {
-        Collections.sort(items, Comparator.comparingDouble(Item::getPrice).reversed());
-    }
+	public static void sortByPriceDecreasing(List<Item> items) {
+		Collections.sort(items, Comparator.comparingDouble(Item::getPrice).reversed());
+	}
 
-    public static void sortByName(List<Item> items) {
-        Collections.sort(items, Comparator.comparing(Item::getName));
-    }
-    
-
+	public static void sortByName(List<Item> items) {
+		Collections.sort(items, Comparator.comparing(Item::getName));
+	}
+	
+	@Override
+	public String toString() {
+		return "Item= " + itemID + ", price = " + price + ", quantity = " + quantity + ", name = " + name + ", description = " + description + ", category = " + category + ", brand = " + brand + ", purchaseId = " + purchaseId;
+	}
 }

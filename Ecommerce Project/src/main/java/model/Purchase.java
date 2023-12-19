@@ -7,14 +7,14 @@ import java.util.List;
 public class Purchase implements Serializable {
     
 	private static final long serialVersionUID = 1L;
-	private int purchaseId;
-    private int userId;
-    private int addressId;
-    private Date date;
-    private double total;
-    private boolean isFilled;
+	public int purchaseId;
+    public int userId;
+    public int addressId;
+    public Date date;
+    public double total;
+    public boolean isFilled;
 
-    private List<Item> items; // List to hold items
+    public List<Item> items; // List to hold items
 
     public List<Item> getItems() {
         return items;
@@ -23,7 +23,7 @@ public class Purchase implements Serializable {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-    
+
     public int getPurchaseId() {
         return purchaseId;
     }
