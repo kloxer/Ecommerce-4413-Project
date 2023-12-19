@@ -14,12 +14,12 @@
         /* Customize the active tab color */
         .tabs ul li.is-active a {
             color: forestgreen; /* Change to your desired color */
-            border-bottom-color: forestgreen; /* Change to your desired color */    
+            border-bottom-color: #007B7D; /* Change to your desired color */    
         }
 
         /* Customize the underline color on hover */
         .tabs ul li:hover a {
-            border-bottom-color: forestgreen; /* Change to your desired color */
+            border-bottom-color: #007B7D; /* Change to your desired color */
         }
             h1 {
   font-size: 20px;

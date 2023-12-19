@@ -24,7 +24,7 @@
         <h2>Add Address</h2>
 
         <c:if test="${not empty msg}">
-            <p style="color: green;">${msg}</p>
+            <p style="color: 007B7D;">${msg}</p>
         </c:if>
 
         <input type="hidden" name="userId" value="${user.getUserId()}" readonly><br>

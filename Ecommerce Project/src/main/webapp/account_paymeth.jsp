@@ -23,7 +23,7 @@
 	<form action="UpdateInfoServlet?type=paymeth" method="post" onsubmit="return validatePaymentMeth()">
     <h2>Your Payment Method</h2>
     <c:if test="${not empty msg}">
-        <p style="color: green;">${msg}</p>
+        <p style="color: 007B7D;">${msg}</p>
     </c:if>
     	<input type="hidden" name="upmId" value="${latestPayMethod.UPM_ID}" readonly>
     	<input type="hidden" name="userId" value="${latestPayMethod.user_id}" readonly>

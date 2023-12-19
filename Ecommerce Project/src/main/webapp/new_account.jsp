@@ -10,7 +10,7 @@
 
 	<%@ include file="./includes/header.jsp"%>
 
-<!--  	<form action="UpdateInfoServlet?type=new_account" method="post" onsubmit="return AddressAndPayValidate()">
+  	<form action="UpdateInfoServlet?type=new_account" method="post" onsubmit="return AddressAndPayValidate()">
     	<h2>New Account Additional Required Info</h2>
     	<h5>*Please fill out this form. Ensure all fields are completed and valid before ordering!*</h5>
     	
@@ -40,12 +40,8 @@
    	    *Expiry Month (ex. "05"): <input type="number" maxlength="2" name="expMonth" value="${latestPayMethod.exp_month}"><br>
    	     
 	<input type="submit" value="Submit">
-    </form>-->
-        <h1>New Account Information</h1>
-    <ul>
-        <li>First Name: ${firstName}</li>
-        <li>Last Name: ${lastName}</li>
-        <li>Email: ${username}</li>
+    </form>
+
 
     </ul>
 	<br><br>

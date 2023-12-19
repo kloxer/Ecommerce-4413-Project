@@ -21,3 +21,6 @@
 #cardAddressForm {
     display: none;
 }
+#checkoutButton:hover {
+    background-color: #007B7D; /* Updated hover color */
+}

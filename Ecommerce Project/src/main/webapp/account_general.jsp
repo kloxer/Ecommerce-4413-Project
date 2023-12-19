@@ -22,7 +22,7 @@
 
 	<form action="UpdateInfoServlet?type=general" method="post" onsubmit="return GeneralInfoVal()">
 		<c:if test="${not empty msg}">
-			<p style="color: green;">${msg}</p>
+			<p style="color: 007B7D;">${msg}</p>
 		</c:if>
 
 		<h2>General Info</h2>

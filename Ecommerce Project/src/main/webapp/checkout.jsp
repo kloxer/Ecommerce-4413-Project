@@ -12,6 +12,105 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/formValidators.js"></script>
     <link rel="stylesheet" href="./css/checkout.css">
+    <style>
+/* checkout-styles.css */
+
+body {
+    background-color: #f2f2f2;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#checkoutContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#leftSide {
+    width: 60%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    color: #007B7D;
+}
+
+/* Customize other styles as needed */
+#rightSide {
+    width: 35%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #007B7D;
+    color: #ffffff;
+}
+
+#orderForm {
+    margin-top: 20px;
+}
+
+#checkoutButton {
+    background-color: #007B7D;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#checkoutButton:hover {
+    background-color: #1d5bbf;
+}
+
+/* Additional styles for the form-like box */
+.form-like-box {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.form-like-box p {
+    color: #3273dc;
+}
+
+.form-like-box label {
+    color: #007B7D;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-like-box select,
+.form-like-box input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+    </style>
 </head>
 <body>
    <%--  <%@ include file="./includes/header.jsp"%>--%>
