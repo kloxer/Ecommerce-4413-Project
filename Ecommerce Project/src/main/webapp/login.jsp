@@ -83,7 +83,9 @@
 
        <!-- JavaScript to handle button click and redirect to register.jsp -->
     <script>
-        document.getElementById("registerButton").addEventListener("click", function () {
+        document.getElementById("registerButton").addEventListener("click", function (event) {
+                    // Prevent the form from being submitted
+            event.preventDefault();
             // Redirect to register.jsp
             window.location.href = "register.jsp";
         });
