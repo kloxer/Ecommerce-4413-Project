@@ -15,7 +15,17 @@ public class Item implements Serializable {
     private String brand;
     private double quantity;
     private double price;
+    private int purchaseId;
 
+
+	public int getPurchaseId() {
+		return purchaseId;
+	}
+	
+	public void setPurchaseId(int purchaseId) {
+		this.purchaseId = purchaseId;
+	}
+	
     public Item() {
     }
 

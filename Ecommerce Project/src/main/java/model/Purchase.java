@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Purchase implements Serializable {
     
@@ -13,6 +14,16 @@ public class Purchase implements Serializable {
     private double total;
     private boolean isFilled;
 
+    private List<Item> items; // List to hold items
+
+    public List<Item> getItems() {
+        return items;
+    }
+    
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+    
     public int getPurchaseId() {
         return purchaseId;
     }

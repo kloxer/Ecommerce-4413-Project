@@ -16,6 +16,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.Cart;
+import model.Item;
 import model.Order;
 import model.ProductDisplay;
 import model.Purchase;
@@ -139,6 +140,8 @@ public void addPurchaseToDatabase(int purchase_id, int user_id, int address_id, 
         return uniqueAddressID + 1;
     }
     
+
+//Get orders from user id
 public List<Order> getOrdersByUserId(int user_id) {
     Connection connection = null;
     PreparedStatement statement = null;
@@ -181,9 +184,64 @@ public List<Order> getOrdersByUserId(int user_id) {
     // Get the items for each purchase
 
 
-    
+
     return orders;
 }
+
+
+    public List<Purchase> getAllPurchasesByUserId(int userId) {
+         String GET_PURCHASES_QUERY = "SELECT * FROM Purchase WHERE user_id = ?";
+
+        List<Purchase> purchases = new ArrayList<>();
+        try (Connection conn = dSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(GET_PURCHASES_QUERY)) {
+
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Purchase purchase = new Purchase();
+                purchase.setPurchaseId(rs.getInt("purchase_id"));
+                purchase.setUserId(rs.getInt("user_id"));
+                purchase.setAddressId(rs.getInt("address_id"));
+                purchase.setDate(rs.getDate("date"));
+                purchase.setTotal(rs.getDouble("total"));
+                purchase.setFilled(rs.getBoolean("isFilled"));
+                purchase.setItems(getItemsForPurchase(rs.getInt("purchase_id"), conn));
+
+                purchases.add(purchase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }
+        return purchases;
+    }
+
+    private List<Item> getItemsForPurchase(int purchaseId, Connection conn) {
+        String GET_ITEMS_QUERY = "SELECT * FROM Purchase_Item WHERE purchase_id = ?";
+
+        List<Item> items = new ArrayList<>();
+        try (PreparedStatement ps = conn.prepareStatement(GET_ITEMS_QUERY)) {
+            ps.setInt(1, purchaseId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Item item = new Item();
+                item.setPurchaseId(rs.getInt("purchase_id"));
+                item.setItemID(rs.getString("item_id"));
+                item.setQuantity(rs.getInt("quantity"));
+                item.setPrice(rs.getDouble("price_at_purchase"));
+
+                items.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }
+        return items;
+    }
+
 
 
 
