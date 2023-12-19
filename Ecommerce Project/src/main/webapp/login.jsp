@@ -17,6 +17,9 @@
         color: white;
     }
 </style>
+
+<script src="./js/formValidators.js"></script>
+
 </head>
 
 <body>
