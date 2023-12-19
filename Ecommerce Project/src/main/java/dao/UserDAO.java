@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import model.User;
 
 public interface UserDAO {
@@ -13,4 +15,6 @@ public interface UserDAO {
 	User getUser(int userId);
 	
 	boolean updateUserDetails(int userId, String firstName, String lastName, String phoneNumber);
+
+	public List<User> getAllUsers();
 }

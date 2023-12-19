@@ -207,6 +207,36 @@ public class UserDAOImpl implements UserDAO{
         // Update failed
         return false; 
     }
+    
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            String sql = "SELECT * FROM User";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserId(resultSet.getInt("User_ID"));
+                user.setUsername(resultSet.getString("Username"));
+                user.setPhoneNumber(resultSet.getString("Phone_number"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setFirstName(resultSet.getString("First_name"));
+                user.setLastName(resultSet.getString("Last_name"));
+                user.setAdmin(resultSet.getBoolean("isAdmin"));
+
+                userList.add(user);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
+        return userList;
+    }
+
 
 
 }
