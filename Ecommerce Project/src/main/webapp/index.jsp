@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <title>Display Items</title>
+  <title>Display Items--Jon Doe</title>
       <style>
         /* Customize the active tab color */
         .tabs ul li.is-active a {
@@ -34,7 +34,6 @@
 
 <!-- ======= -->
 	<%@ include file="./includes/header.jsp"%>
-<<<<<<< HEAD
 <!-- >>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project -->
     <!-- Tabs Container
     <div class="column is-three-fifths is-offset-one-fifth">
@@ -43,32 +42,13 @@
             <ul>-->
                 <!-- Home Tab 
                 <li class="is-active"><a href="#">Home</a></li>-->
-=======
-    <!-- Tabs Container -->
-	<div class="tabs is-centered">
-		<ul>
-			<strong><li>Sort by:</li></strong>
->>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project
 
-<<<<<<< HEAD
                 <!-- Products Tab 
                 <li><a href="#">Products</a></li>-->
-=======
-			<!-- Price sorting -->
-			<li><a href="#" onclick="addQueryParam('sort', 'priceasc')">Price Ascending</a></li>
-			<li><a href="#" onclick="addQueryParam('sort', 'pricedesc')">Price Descending</a></li>
->>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project
 
-<<<<<<< HEAD
                 <!-- About Tab 
                 <li><a href="#">About</a></li>-->
-=======
-			<!-- Name sorting-->
-			<li><a href="#" onclick="addQueryParam('sort', 'nameasc')">Name Ascending</a></li>
-			<li><a href="#" onclick="addQueryParam('sort', 'namedesc')">Name Descending</a></li>
->>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project
 
-<<<<<<< HEAD
                 <!-- Blog Tab
                 <li><a href="#">Blog</a></li>
                 
@@ -102,19 +82,6 @@
   </ul>
 <!-- ======= -->
     
-=======
-			<strong><li>Category/Brand:</li></strong>
-			<!-- Category Filtering -->
-			<li><a href="#" onclick="addQueryParam('brand', 'Apple')">Apple</a></li>
-			<li><a href="#" onclick="addQueryParam('brand', 'Samsung')">Samsung</a></li>
-		</ul>
-
-	</div>
-	
-
-	<h1>Catalogue of Our Items</h1>
-
->>>>>>> branch 'main' of https://github.com/kloxer/Ecommerce-4413-Project
 <ul style="list-style-type: none; display: flex; flex-wrap: wrap; padding: 0; margin: 0;">
   <c:forEach var="item" items="${productDisplays}">
     <li style="flex-basis: calc(33.333% - 20px); margin: 10px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1); overflow: hidden;">
@@ -130,15 +97,6 @@
     </li>
   </c:forEach>
 </ul>
-
-<script>
-	//Script to change query parameters for filtering
-    function addQueryParam(key, value) {
-        const url = new URL(window.location.href);
-        url.searchParams.set(key, value);
-        window.location.href = url.toString();
-    }
-</script>
 
 
 
