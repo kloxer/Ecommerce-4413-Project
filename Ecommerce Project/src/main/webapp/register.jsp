@@ -10,6 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script src="./js/formValidators.js"></script>
+
     <title>Register</title>
         <style>
     .is-color {
@@ -80,45 +82,6 @@
                                 </div>
                             </div>
 
-                            <!-- Shipping Address Input -->
-                            <div class="field">
-                                <label class="label">Billing/Shipping Address</label>
-                                <div class="control">
-                                    <input class="input" type="text" id=address name=address placeholder="Enter your billing or shipping address">
-                                </div>
-                            </div>
-
-                            <!-- Postal Code Input -->
-                            <div class="field">
-                                <label class="label">Postal Code</label>
-                                <div class="control">
-                                    <input class="input" type="text" id=postalcode name=postalcode placeholder="Enter your postal code">
-                                </div>
-                            </div>
-
-                            <!-- Card Number Input -->
-                            <div class="field">
-                                <label class="label">Card Number</label>
-                                <div class="control">
-                                    <input class="input" type="text" id=cardnum name=cardnum placeholder="Enter your card number">
-                                </div>
-                            </div>
-
-                            <!-- Expiry Date Input -->
-                            <div class="field">
-                                <label class="label">Expiry Date</label>
-                                <div class="control">
-                                    <input class="input" type="text" id=cardexp name=cardexp placeholder="Enter expiry date (MM/YYYY)">
-                                </div>
-                            </div>
-
-                            <!-- Security Code Input -->
-                            <div class="field">
-                                <label class="label">Security Code</label>
-                                <div class="control">
-                                    <input class="input" type="text" id=cardcode name=cardcode placeholder="Enter security code (Three or Four digits)">
-                                </div>
-                            </div>
 
                             <!-- Register Button -->
                             <div class="field">

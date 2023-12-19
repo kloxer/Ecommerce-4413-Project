@@ -33,9 +33,9 @@
                        		<!-- Sign In Form -->
 			                 <!-- Username or Email Input -->
                             <div class="field">
-                                <label class="label">Email</label>
+                                <label class="label">Username</label>
                                 <div class="control">
-                                    <input class="input" id=username name="username" type="email" placeholder="Enter your email">
+                                    <input class="input" id=username name="username" type="text" placeholder="Enter your username">
                                 </div>
                             </div>
 
@@ -50,13 +50,13 @@
                             <!-- Sign In Button -->
                             <div class="field">
                                 <div class="control">
-                                    <button id="registerButton" class="button is-color is-fullwidth">Sign In</button>
+                                    <button class="button is-color is-fullwidth">Sign In</button>
                                 </div>
                             </div>
                             <!-- Register Button -->
                             <div class="field">
                                 <div class="control">
-                                    <button class="button is-color is-fullwidth">New Customer? Sign up!</button>
+                                    <button id="registerButton" class="button is-color is-fullwidth">New Customer? Sign up!</button>
                                 </div>
                             </div>
                                                     <!-- End Sign In Form -->
@@ -83,7 +83,9 @@
 
        <!-- JavaScript to handle button click and redirect to register.jsp -->
     <script>
-        document.getElementById("registerButton").addEventListener("click", function () {
+        document.getElementById("registerButton").addEventListener("click", function (event) {
+                    // Prevent the form from being submitted
+            event.preventDefault();
             // Redirect to register.jsp
             window.location.href = "register.jsp";
         });
