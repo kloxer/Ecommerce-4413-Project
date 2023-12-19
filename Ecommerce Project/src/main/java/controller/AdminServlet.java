@@ -18,8 +18,10 @@ import dao.ProductDisplayDAOImpl;
 import dao.UserDAOImpl;
 import dao.UserPaymentDAO;
 import dao.UserPaymentDAOImpl;
+import dao.orderDAO;
 import model.Address;
 import model.ProductDisplay;
+import model.Purchase;
 import model.User;
 import model.UserPaymentMethod;
 
@@ -72,6 +74,18 @@ public class AdminServlet extends HttpServlet {
                      request.getRequestDispatcher("admin_inventory_maintenance.jsp").forward(request, response);
             	 }else if(section != null && section.equals("sales")) {
             		 //REDIRECT HERE FOR SALES HISTORY
+
+                    orderDAO orderDAO;
+                    List<Purchase> allPurchases;
+                    try {
+                        orderDAO = new orderDAO();
+                        allPurchases = orderDAO.getAllPurchasesByAllUsers();
+                        session.setAttribute("allPurchases", allPurchases);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    request.getRequestDispatcher("admin_all_sales.jsp").forward(request, response);
+
             		 
             	 }
             	
@@ -96,6 +110,9 @@ public class AdminServlet extends HttpServlet {
                     request.setAttribute("selectedUser", userToEdit);
                     request.getRequestDispatcher("admin_edit_user.jsp").forward(request, response);
                 }
+
+
+               
             	
                 // If no action or section, obtain list of users for drop down list
                 // Save the list in the session and forward
