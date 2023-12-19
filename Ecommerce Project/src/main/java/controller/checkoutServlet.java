@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,8 +37,10 @@ public class checkoutServlet extends HttpServlet {
         System.out.println("POST request received at CheckoutServlet");
         HttpSession session = request.getSession();
         
-        Cart cart = (Cart) session.getAttribute("cart"); //get cart from session, assume already in session
+        Cart cart = (Cart) session.getAttribute("cart");
 
+
+    
         User user = (User) session.getAttribute("user");
         String paymentInfo = request.getParameter("paymentInfo");
         int addressInfo = Integer.parseInt(request.getParameter("addressInfo")); // Parse the string value to an integer
@@ -57,7 +60,6 @@ public class checkoutServlet extends HttpServlet {
         System.out.println("Payment Info: " + paymentInfo);
         System.out.println("AddressID Info: " + addressInfo);
         System.out.println("UserID Info: " + addressInfo);
-        System.out.println("street line Info: " + currAddr);
 
         orderDAO orderDAO;
         List<Purchase> allPurchases;
@@ -69,10 +71,7 @@ public class checkoutServlet extends HttpServlet {
             allPurchases = orderDAO.getAllPurchasesByUserId(userId);
 
 
-            session.setAttribute("allPurchases", allPurchases);
             
-             cart.clearCart();
-                System.out.println("Cart cleared");
 
         } catch (NamingException e) {
             // TODO Auto-generated catch block
@@ -80,14 +79,17 @@ public class checkoutServlet extends HttpServlet {
         }
         
 
-        //Set purchases to session
+        //Set session attributes so that JSP can output them
+
+        session.setAttribute("paymentUsedForPurchase", paymentInfo);
+        session.setAttribute("addressUsedForPurchase", address);
   
 
 
 
          // After processing the order, redirect to showorder.jsp
-        response.sendRedirect("showorder.jsp");
-
+        RequestDispatcher dispatcher = request.getRequestDispatcher("showorder.jsp");
+        dispatcher.forward(request, response);
 
 
 

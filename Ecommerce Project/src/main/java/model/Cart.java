@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cart {
+public class Cart implements Cloneable, Serializable {
     private Map<ProductDisplay, Integer> items;
 
     public Cart() {
@@ -59,4 +60,6 @@ public class Cart {
     public void clearCart() {
         items.clear();
     }
+
+
 }
